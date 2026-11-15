@@ -12,3 +12,4 @@ rain.mp3    지붕 위로 떨어지는 빗소리 / 한국저작권위원회 / CC
 wind.mp3    나뭇잎을 스치는 잔잔한 오후의 바람소리 / 한국저작권위원회 / CC BY / 13220711
 
 bell1~3.mp3 은 bell.mp3 원본에서 종 치는 순간만 잘라 낸 것, moktak1.mp3 은 moktak.mp3 원본에서 두드리는 부분만 잘라 낸 것입니다.
+owl1~owl5: 소쩍새(Otus sunia) 울음 — Sharadapte, Wikimedia Commons "Oriental scops owl song recorded in March 2009 at Cotigao Wildlife Sanctuary, Goa.wav", CC BY-SA 4.0. 한 번씩 우는 소리만 잘라 높낮이 거름(450~2600Hz)을 함.
