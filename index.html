@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>산사 밤마실</title>
+<meta name="description" content="잠들기 전, 절 한 곳 다녀오세요. 우리나라 옛 절과 기도도량의 밤소리를 들으며 잠드는 곳.">
+<meta name="theme-color" content="#0a0c10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c10;--panel:#11141a;--line:rgba(227,207,154,.16);--ink:#efe6d2;--soft:#d9d0bb;--sub:#a59c87;--gold:#c8a96a;--gold2:#e3cf9a;
+  --serif:"Gowun Batang","Nanum Myeongjo","Noto Serif KR","Batang",serif;
+  --sans:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif}
+*{box-sizing:border-box}
+html{font-size:19px;-webkit-text-size-adjust:100%}
+html.big{font-size:23px}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.75;-webkit-font-smoothing:antialiased;
+  padding-bottom:calc(150px + env(safe-area-inset-bottom));word-break:keep-all;overflow-wrap:anywhere}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.45;font-weight:400;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+
+#top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 22px 14px;max-width:720px;margin:0 auto}
+#top{position:sticky;top:0;z-index:30;background:rgba(10,12,16,.92);box-shadow:0 0 0 100vmax rgba(10,12,16,.92);clip-path:inset(0 -100vmax);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+#top a.backpill{font-family:var(--sans);font-size:1rem;letter-spacing:.04em;display:inline-flex;align-items:center;min-height:50px;padding:0 22px 0 16px;border:1px solid rgba(200,169,106,.6);border-radius:999px}
+#top a{font-family:var(--serif);font-size:1.15rem;letter-spacing:.34em;text-decoration:none;color:var(--gold2)}
+#bigbtn{background:transparent;border:1px solid var(--line);border-radius:999px;min-height:44px;padding:0 16px;font-size:.82rem;color:var(--sub);letter-spacing:.04em}
+main{max-width:720px;margin:0 auto;padding:0 22px}
+
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.12) translate(-1.5%,-1%)}}
+@keyframes fadein{from{opacity:0}}
+.hero{position:relative;margin:0 -22px}
+.heroimg{position:relative;aspect-ratio:4/5;max-height:74vh;width:100%;overflow:hidden;background:#000}
+.heroimg img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.6) saturate(.8);animation:kb 50s ease-in-out infinite alternate}
+.heroimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,16,.4) 0%,rgba(10,12,16,0) 28%,rgba(10,12,16,.5) 62%,var(--bg) 100%)}
+.hero .cap{position:absolute;left:0;right:0;bottom:30px;padding:0 26px;text-align:center}
+.hero .cap::before{content:"";display:block;width:1px;height:40px;background:var(--gold);margin:0 auto 20px;opacity:.75}
+.eyebrow{font-size:.8rem;letter-spacing:.3em;color:var(--gold2);margin-bottom:14px}
+.hero h1{font-size:1.9rem;line-height:1.55}
+.hero .where{color:#cfc6b0;font-size:.95rem;margin-top:14px}
+.hc{position:absolute;right:14px;top:10px;z-index:1;margin:0!important;color:rgba(239,230,210,.4)!important}
+
+.tour{margin:0 -22px}
+.frame{position:relative;aspect-ratio:4/3;overflow:hidden;background:#000}
+.frame.tall{aspect-ratio:4/5}
+.frame.art{aspect-ratio:8/5}
+.frame img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.8) saturate(.88);animation:kb 44s ease-in-out infinite alternate,fadein 1.4s}
+.frame svg{width:100%;height:100%;display:block;filter:saturate(.7) brightness(.9)}
+.frame::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 90px rgba(0,0,0,.5);background:linear-gradient(180deg,transparent 62%,rgba(10,12,16,.9))}
+.count{position:absolute;top:14px;right:18px;z-index:1;font-size:.8rem;letter-spacing:.22em;color:rgba(239,230,210,.85)}
+.tour .cap{padding:24px 26px 4px;text-align:center}
+.tour h1{font-size:1.95rem;letter-spacing:.14em}
+.tour .where{color:var(--sub);font-size:.86rem;letter-spacing:.08em;margin-top:2px}
+.spot{font-family:var(--serif);color:var(--gold2);font-size:1.18rem;margin-top:22px}
+.spot::before{content:"";display:block;width:28px;height:1px;background:var(--gold);margin:0 auto 18px}
+.spotcap{font-size:1rem;color:var(--soft);margin-top:6px}
+.credit{color:#6f695b;font-size:.72rem;margin-top:10px}
+.tnav{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 22px 4px}
+.tnav button{min-height:56px;border-radius:999px;border:1px solid var(--line);background:transparent;font-size:.98rem;letter-spacing:.06em}
+.tnav button:disabled{opacity:.28}
+.ttags{text-align:center;margin:16px 0 24px}
+
+.card{margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
+.card h2{font-family:var(--sans);font-size:.86rem;letter-spacing:.28em;color:var(--gold);margin-bottom:16px}
+.card.quote{text-align:center}
+.verse{font-family:var(--serif);font-size:1.22rem;line-height:1.95}
+.verse-src{color:var(--sub);font-size:.86rem;margin-top:14px;letter-spacing:.06em}
+.sec{font-size:1.45rem;margin:48px 0 4px;text-align:center}
+.secsub{color:var(--sub);font-size:.88rem;text-align:center;letter-spacing:.03em}
+
+.chips{display:flex;gap:24px;overflow-x:auto;padding:20px 2px 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:48px;padding:0 2px;border:0;border-bottom:1px solid transparent;background:none;font-size:.95rem;color:var(--sub);letter-spacing:.04em}
+.chip[aria-pressed=true]{color:var(--gold2);border-bottom-color:var(--gold)}
+
+.list{display:grid;gap:36px;margin-top:20px}
+@media(min-width:620px){.list{grid-template-columns:1fr 1fr}}
+.tcard{display:block;text-decoration:none}
+.tmedia{position:relative;aspect-ratio:16/10;overflow:hidden;background:#000}
+.tmedia img,.tmedia svg{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.72) saturate(.82)}
+.tmedia::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,12,16,.88))}
+.tname{position:absolute;left:18px;right:18px;bottom:14px;z-index:1}
+.tname h3{font-size:1.55rem;letter-spacing:.1em}
+.tname .where{color:#cfc6b0;font-size:.82rem;letter-spacing:.06em}
+.tcard .tx{padding:12px 2px 0}
+.line{font-size:1rem;color:var(--soft)}
+.tags{color:var(--gold);font-size:.78rem;letter-spacing:.14em;margin-top:6px}
+.seal{position:absolute;top:12px;right:12px;z-index:1;padding:3px 10px;border:1px solid rgba(227,207,154,.7);color:var(--gold2);font-size:.72rem;letter-spacing:.14em;background:rgba(10,12,16,.5)}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:60px;border-radius:999px;border:1px solid rgba(200,169,106,.55);
+  background:transparent;color:var(--gold2);font-size:1rem;letter-spacing:.06em;padding:10px 18px;text-decoration:none;text-align:center}
+.btn.main{background:linear-gradient(180deg,#dcc48c,#b8975a);color:#17130a;border:0;font-size:1.12rem;font-weight:700;min-height:66px;box-shadow:0 10px 34px rgba(200,169,106,.16)}
+.btn.main.on{background:transparent;color:var(--gold2);border:1px solid rgba(200,169,106,.55);box-shadow:none;font-weight:400}
+.back{display:inline-flex;align-items:center;min-height:48px;color:var(--sub);text-decoration:none;font-size:.9rem;letter-spacing:.04em}
+.timer{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.timer button{min-height:54px;border-radius:999px;border:1px solid var(--line);background:transparent;font-size:.92rem;padding:0 2px}
+.timer button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#17130a;font-weight:700}
+.note{color:var(--sub);font-size:.88rem;margin-top:12px}
+.ctr{text-align:center}
+.story{font-size:1.04rem;line-height:1.95;color:#e4dbc6}
+.story + .note{margin-bottom:18px}
+
+textarea{width:100%;min-height:96px;border-radius:6px;border:1px solid var(--line);background:#0f1218;color:var(--ink);font:inherit;padding:14px;resize:vertical}
+.wish{display:flex;gap:10px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line)}
+.wish:first-child{border-top:0}
+.wish p{flex:1;font-family:var(--serif)}
+.wish small{display:block;color:var(--sub);font-family:var(--sans);font-size:.78rem;margin-top:2px}
+.wish button{flex:none;min-width:52px;min-height:48px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--sub);font-size:.8rem}
+
+.map{margin:22px -22px 0}
+.map svg{display:block;width:100%;max-width:520px;height:auto;margin:0 auto}
+.map .grat path{stroke:#e3cf9a;stroke-opacity:.07;stroke-width:.6;fill:none}
+.map .grat text{fill:#5f5a4e;font-size:8.5px}
+.map .sea text{fill:#6b6659;font-family:var(--serif);font-size:13px;letter-spacing:4px}
+.map .lb{font-family:var(--serif);font-size:13px;fill:#efe6d2;paint-order:stroke;stroke:#0a0c10;stroke-width:3px;stroke-linejoin:round}
+.legend{display:grid;margin-top:8px}
+@media(min-width:520px){.legend{grid-template-columns:1fr 1fr;column-gap:24px}}
+.legend a{display:flex;align-items:center;gap:14px;min-height:60px;padding:8px 2px;border-bottom:1px solid var(--line);text-decoration:none;font-family:var(--serif);font-size:1.08rem}
+.num{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--sans);font-weight:700;color:#17130a;font-size:.82rem}
+.legend small{color:var(--sub);display:block;font-family:var(--sans);font-size:.78rem;line-height:1.3}
+
+.stamps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.stamp{aspect-ratio:1;border-radius:50%;border:1px dashed rgba(227,207,154,.22);display:grid;place-items:center;text-align:center;text-decoration:none;
+  font-family:var(--serif);color:#5d584c;font-size:.95rem;line-height:1.3;padding:6px}
+.stamp.got{border:1px solid #b5503f;outline:1px solid #b5503f;outline-offset:3px;color:#dd8a78;background:rgba(181,80,63,.08);transform:rotate(-6deg)}
+.stamp small{display:block;font-family:var(--sans);font-size:.64rem;letter-spacing:.06em}
+
+#player{position:fixed;left:0;right:0;bottom:calc(68px + env(safe-area-inset-bottom));z-index:20;background:rgba(14,16,21,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+#player .in{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:8px 14px 8px 22px}
+#player a{flex:1;text-decoration:none;font-family:var(--serif);font-size:1rem;line-height:1.35;min-height:50px;display:flex;flex-direction:column;justify-content:center}
+#player small{font-family:var(--sans);color:var(--sub);font-size:.76rem}
+#player button{flex:none;min-height:46px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:transparent;font-size:.84rem;color:var(--gold2)}
+#tabs{position:fixed;left:0;right:0;bottom:0;z-index:21;background:rgba(8,10,13,.97);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+#tabs .in{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+#tabs a{min-height:68px;display:grid;place-items:center;text-decoration:none;color:var(--sub);font-size:.9rem;letter-spacing:.14em;position:relative}
+#tabs a[aria-current=page]{color:var(--gold2)}
+#tabs a[aria-current=page]::before{content:"";position:absolute;top:10px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--gold)}
+
+#sleep{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#5d5647;text-align:center;padding:24px}
+#sleep .moon{width:56px;height:56px;border-radius:50%;background:#2e2a1d;box-shadow:0 0 44px #221e12}
+#sleep h2{font-size:1.25rem;color:#6d6552;letter-spacing:.12em}
+#sleep button{margin-top:30px;min-height:58px;padding:0 30px;border-radius:999px;border:1px solid #2a2720;background:transparent;color:#6d6552;letter-spacing:.08em}
+#toast{position:fixed;left:50%;bottom:calc(158px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:60;background:#efe6d2;color:#17130a;
+  padding:12px 24px;border-radius:999px;font-size:.92rem;width:max-content;max-width:88vw;text-align:center;opacity:0;pointer-events:none;transition:opacity .5s}
+#toast.show{opacity:1}
+footer{max-width:720px;margin:56px auto 0;padding:26px 22px 0;border-top:1px solid var(--line);color:#5f5a4e;font-size:.74rem;line-height:1.7;text-align:center}
+@media(prefers-reduced-motion:reduce){.heroimg img,.frame img{animation:none}#toast{transition:none}}
+</style>
+</head>
+<body>
+<header id="top">
+  <a href="#/" id="brand">산사 밤마실</a>
+  <button id="bigbtn" data-act="big" aria-pressed="false">글씨 크게</button>
+</header>
+<main id="view"></main>
+<footer>
+  유튜브 「산사마실」이 마련한 잠자리 쉼터입니다. 소리는 실제 절과 자연에서 녹음한 것으로, 공유마당에서 받았습니다
+  (한국저작권위원회 · CC BY, (재)전주정보문화산업진흥원 · 공공누리 제1유형). 사진은 위키미디어 공용과 국가유산청 자료이며 사진마다 출처를 적었습니다.
+  그림은 AI 도구와 함께 만들었습니다. 도장과 기도 글은 이 기기에만 저장됩니다.
+</footer>
+<div id="player" hidden><div class="in"><a id="pl-link" href="#/"><span id="pl-name"></span><small id="pl-left"></small></a>
+  <button data-act="sleep">화면 어둡게</button><button data-act="stop">끄기</button></div></div>
+<nav id="tabs" aria-label="주 메뉴"><div class="in">
+  <a href="#/" data-tab="home">절 둘러보기</a><a href="#/map" data-tab="map">지도</a><a href="#/book" data-tab="book">순례 수첩</a>
+</div></nav>
+<div id="sleep" hidden role="dialog" aria-label="잠자리 화면">
+  <div class="moon"></div><h2 id="sl-name"></h2><p id="sl-left"></p>
+  <button data-act="wake">화면 밝히기</button>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="map-data.js"></script>
+<script>
+/* ───────── 자료 ───────── */
+const SOUNDS=[['wave','파도'],['stream','계곡물'],['rain','빗소리'],['wind','솔바람'],['bug','풀벌레'],['chime','풍경'],['moktak','목탁'],['bell','범종'],['yebul','저녁예불']];
+const SCALE={wave:1,stream:.9,rain:.9,wind:1,bug:.7,chime:.9,moktak:.8,bell:.9,yebul:.9};
+const GROUPS={story:'산사마실 이야기',jeok:'적멸보궁',gwan:'관음성지',pray:'소원 기도처'};
+const GCOL={story:'#c8a96a',jeok:'#e3cf9a',gwan:'#9db7a8',pray:'#c9a3a0'};
+const T=[
+ {id:'tongdosa',name:'통도사',where:'경남 양산 · 영축산',g:['story','jeok'],lat:35.488,lon:129.065,yt:'9C0J2SxNU_k',
+  line:'불상이 없는 대웅전, 아홉 용이 살던 연못',
+  story:'통도사 대웅전에는 불상이 없습니다. 바로 뒤 금강계단에 부처님의 진신사리를 모셨기 때문입니다. 자장율사가 아홉 마리 용이 살던 깊은 연못을 메워 절을 지었고, 눈먼 용 한 마리가 남아 절을 지키겠다고 약속했다는 이야기가 전해집니다. 그 작은 연못 구룡지는 가뭄에도 마르지 않는다고 합니다.',
+  src:'삼국유사 자장정율 조, 통도사 창건 설화(구전)',mix:{stream:35,wind:30,chime:30,bug:20},
+  scene:{type:'yard',moon:315,props:[['hall',205,150,1],['pond',95,224],['pine',345,222,1]]}},
+ {id:'unmunsa',name:'운문사',where:'경북 청도 · 호거산',g:['story'],lat:35.664,lon:128.960,
+  line:'하늘을 속인 스님과 이무기, 그리고 배나무',
+  story:'용왕의 아들 이목은 가뭄에 시달리는 사람들을 위해 하늘의 허락 없이 비를 내렸습니다. 하늘이 사자를 보내 그를 잡으려 하자, 평생 거짓을 말하지 않던 보양 스님은 말없이 뜰의 배나무를 가리켰습니다. 벼락은 배나무에 떨어졌고, 이무기는 살아남았습니다.',
+  src:'삼국유사 권4 의해편 보양이목 조',mix:{rain:45,chime:25,wind:20,bug:15},
+  scene:{type:'yard',moon:90,rain:1,props:[['hall',170,152,1],['pine',320,224,1.1]]}},
+ {id:'naksansa',name:'낙산사',where:'강원 양양 · 동해 바닷가',g:['story','gwan'],lat:38.124,lon:128.628,
+  line:'하룻밤 꿈에 살아 본 사십 년',
+  story:'태수의 딸을 사랑하게 된 스님 조신은 낙산사 관음보살님 앞에서 몇 해를 빌었습니다. 어느 밤 법당에서 잠이 들었고, 꿈속에서 그 여인과 사십 년을 살았습니다. 가난과 이별 끝에 눈을 떠 보니 등잔불은 아직 타고 있었고, 머리는 하얗게 세어 있었습니다. 바닷가 절벽 위 홍련암은 우리나라 관음성지 가운데 한 곳입니다.',
+  src:'삼국유사 권3 탑상편 「낙산이대성 관음 정취 조신」 조',mix:{wave:70,wind:20,chime:25},
+  scene:{type:'sea',moon:300,cliff:'l'}},
+ {id:'buseoksa',name:'부석사',where:'경북 영주 · 봉황산',g:['story'],lat:36.999,lon:128.687,
+  line:'하늘에 뜬 바위가 되어 스님을 지킨 여인',
+  story:'당나라에서 공부하던 의상 스님을 선묘라는 여인이 사랑했습니다. 스님이 신라로 돌아가는 배에 오르자, 선묘는 용이 되어 그 배를 지키겠다고 맹세하고 바다에 몸을 던졌습니다. 훗날 의상이 절을 지으려 할 때 무리가 길을 막자, 큰 바위가 하늘로 떠올라 그들을 물리쳤다고 합니다. 그래서 절 이름이 뜬 돌, 부석(浮石)입니다.',
+  src:'송고승전 권4 「의상전」, 삼국유사 권4 「의상전교」',mix:{wind:45,chime:35,bug:25},
+  scene:{type:'yard',moon:330,props:[['float',195,92,1],['hall',195,168,1],['pine',55,226,1]]}},
+ {id:'bulguksa',name:'불국사 · 석굴암',where:'경북 경주 · 토함산',g:['story'],lat:35.790,lon:129.332,
+  line:'두 생의 부모를 위해 지은 절',
+  story:'하나뿐인 밭을 절에 바친 가난한 소년 대성은 얼마 뒤 세상을 떠났고, 그날 밤 재상 김문량의 집에 다시 태어났다고 합니다. 아기는 이레 동안 왼손을 펴지 않았는데, 손바닥에는 「대성」 두 글자가 새겨진 금 조각이 있었습니다. 자란 뒤 그는 지금의 부모를 위해 불국사를, 전생의 부모를 위해 석굴암을 지었습니다.',
+  src:'삼국유사 권5 효선 「대성효이세부모 신문대」',mix:{bug:35,wind:25,chime:25,bell:30},
+  scene:{type:'yard',moon:70,props:[['hall',240,150,.95],['pagoda',95,222,1.1,3,26],['pagoda',345,224,1,3,24]]}},
+ {id:'sangwonsa',name:'상원사',where:'강원 평창 · 오대산',g:['story','jeok'],lat:37.786,lon:128.564,
+  line:'계곡에서 임금의 등을 밀어 준 아이',
+  story:'조카의 왕위를 빼앗은 세조는 편히 잠들지 못했고, 온몸에 종기가 번졌습니다. 1466년 봄 오대산 상원사를 찾아 홀로 계곡물에 몸을 담갔을 때, 숲에서 한 아이가 걸어 나와 등을 밀어 주었다고 합니다. 그 아이가 문수동자였다는 이야기가 전해집니다. 상원사에는 지금 남아 있는 우리나라 종 가운데 가장 오래된 동종이 있고, 산 위쪽에는 적멸보궁이 있습니다.',
+  src:'조선왕조실록 세조실록, 상원사 전승',mix:{stream:65,wind:25,bell:25,chime:15},
+  scene:{type:'valley',moon:320,props:[['hall',105,150,.7],['pine',330,215,1.1],['pine',45,222,.8]]}},
+ {id:'hoeamsa',name:'회암사',where:'경기 양주 · 천보산',g:['story'],lat:37.845,lon:127.100,
+  line:'임금의 꿈을 풀어 준 스님',
+  story:'무너지는 집에서 서까래 세 개를 지고 나온 꿈. 며칠째 잠 못 이루던 장수 이성계에게, 무학대사는 그것이 임금 왕(王) 자라고 풀어 주었다고 합니다. 조선을 세운 태조는 스승이 머물던 회암사를 자주 찾았고, 왕위에서 물러난 뒤에도 이곳에 머물렀습니다. 지금은 너른 절터와 돌만 남아 그 시절을 전합니다.',
+  src:'조선왕조실록 태조실록, 고려사, 회암사 전승',mix:{wind:40,bug:40,moktak:15},
+  scene:{type:'yard',moon:300,props:[['ruin',200,214,1],['pine',60,222,1]]}},
+ {id:'bunhwangsa',name:'분황사',where:'경북 경주',g:['story'],lat:35.841,lon:129.234,
+  line:'해골에 고인 물을 달게 마신 밤',
+  story:'당나라로 공부하러 가던 길, 원효는 비를 피해 들어간 굴에서 목이 말라 바가지의 물을 달게 마셨습니다. 아침에 보니 그곳은 오래된 무덤이었고, 바가지는 해골이었다고 전해집니다. 마음먹기에 따라 세상이 달라진다는 것을 안 원효는 발길을 돌렸고, 훗날 경주 분황사에 가장 오래 머물며 글을 썼습니다.',
+  src:'송고승전, 삼국유사',mix:{bug:50,rain:20,chime:25},
+  scene:{type:'yard',moon:310,props:[['pagoda',200,226,2.1,3,36],['pine',55,222,.9]]}},
+ {id:'bongjeongam',name:'봉정암',where:'강원 인제 · 설악산',g:['jeok'],lat:38.158,lon:128.445,
+  line:'설악산 가장 높은 곳의 기도처',
+  story:'설악산 깊은 곳, 해발 천이백 미터가 넘는 자리에 있는 암자입니다. 신라의 자장율사가 부처님 진신사리를 모셨다고 전해지며, 바위 위에 선 오층석탑이 그 사리탑입니다. 백담사에서 계곡을 따라 대여섯 시간을 걸어야 닿는 곳이라, 오르는 길 자체가 기도라고들 합니다.',
+  mix:{wind:55,stream:30,chime:25,moktak:15},
+  scene:{type:'mountain',moon:80,props:[['crag',250,250,1],['pagoda',250,128,.9,5,20],['hall',110,196,.6]]}},
+ {id:'jeongamsa',name:'정암사',where:'강원 정선 · 함백산',g:['jeok'],lat:37.186,lon:128.916,
+  line:'산 중턱 수마노탑이 지키는 절',
+  story:'함백산 자락 깊은 골짜기에 있는 절로, 자장율사가 세웠다고 전해집니다. 법당인 적멸보궁에는 불상이 없고, 뒷산 중턱의 수마노탑에 부처님 진신사리를 모셨다고 합니다. 벽돌처럼 다듬은 돌을 쌓아 올린 이 탑은 국보입니다.',
+  mix:{stream:50,wind:30,chime:20},
+  scene:{type:'mountain',moon:95,props:[['crag',300,250,.8],['pagoda',300,150,.8,7,16],['hall',135,196,.75],['pine',40,224,.9]]}},
+ {id:'beopheungsa',name:'법흥사',where:'강원 영월 · 사자산',g:['jeok'],lat:37.371,lon:128.257,
+  line:'소나무 숲길 끝의 적멸보궁',
+  story:'사자산 아래 자리한 절로, 자장율사가 부처님 진신사리를 모시고 세웠다고 전해집니다. 신라 말에는 선종의 아홉 산문 가운데 하나인 사자산문이 이곳에서 열렸습니다. 적멸보궁으로 오르는 길의 곧고 붉은 소나무 숲이 이름나 있습니다.',
+  mix:{wind:45,bug:30,stream:20,moktak:15},
+  scene:{type:'mountain',moon:320,props:[['hall',200,178,.85],['pine',70,226,1.2],['pine',120,222,.9],['pine',330,226,1.1]]}},
+ {id:'boriam',name:'보리암',where:'경남 남해 · 금산',g:['gwan'],lat:34.752,lon:127.983,
+  line:'남해 바다를 내려다보는 관음 기도처',
+  story:'남해 금산 꼭대기 가까이, 바다가 한눈에 내려다보이는 암자입니다. 원효대사가 처음 절을 지었다고 전해집니다. 이성계가 이곳에서 백일기도를 올린 뒤 나라를 세웠고, 그 보답으로 산에 비단 금(錦) 자를 내려 금산이 되었다는 이야기가 있습니다.',
+  mix:{wave:45,wind:40,chime:25},
+  scene:{type:'sea',moon:105,cliff:'r'}},
+ {id:'bomunsa',name:'보문사',where:'인천 강화 · 석모도 낙가산',g:['gwan'],lat:37.689,lon:126.322,
+  line:'서해 노을 아래 눈썹바위 관음',
+  story:'강화도 옆 석모도의 낙가산에 있는 절입니다. 옛날 어부들이 바다에서 그물로 건져 올린 돌 스물두 개를 석굴에 모셨더니 나한상이었다는 이야기가 전해집니다. 사백여 개의 계단을 오르면 눈썹처럼 생긴 바위 아래 관음상이 서해를 바라보고 앉아 있습니다.',
+  mix:{wave:50,wind:25,moktak:25,chime:15},
+  scene:{type:'sea',moon:310,cliff:'r',isles:1}},
+ {id:'hyangiram',name:'향일암',where:'전남 여수 · 돌산 금오산',g:['gwan'],lat:34.593,lon:127.803,
+  line:'해를 향해 앉은 바닷가 암자',
+  story:'여수 돌산도 끝 금오산 벼랑에 자리한 암자로, 이름 그대로 「해를 향한 암자」입니다. 원효대사가 처음 지었다고 전해집니다. 사람 하나 겨우 지나는 바위틈 길을 지나 오르면 남해 바다 위로 해가 떠오르는 모습을 볼 수 있어, 새해 첫날이면 많은 이들이 찾습니다.',
+  mix:{wave:65,wind:20,chime:25},
+  scene:{type:'sea',sun:1,moon:260,cliff:'l'}},
+ {id:'gatbawi',name:'갓바위',where:'경북 경산 · 팔공산 관봉',g:['pray'],lat:35.971,lon:128.735,
+  line:'한 가지 소원은 꼭 들어주신다는 부처님',
+  story:'팔공산 관봉 꼭대기에 앉아 계신 돌부처님입니다. 머리 위에 갓처럼 넓적한 돌을 쓰고 있어 갓바위라 부릅니다. 정성껏 빌면 한 가지 소원은 꼭 들어주신다는 이야기가 전해져, 입시 철이면 밤새 기도하는 이들의 발길이 이어집니다.',
+  mix:{wind:50,moktak:35,bug:20},
+  scene:{type:'rock',moon:320,props:[['gat',200,100,1],['pine',70,226,1],['pine',340,228,.9]]}}
+];
+const VERSES=[
+ ['잠 못 드는 이에게 밤은 길고, 지친 이에게 길은 멉니다.','법구경'],
+ ['미움은 미움으로 풀리지 않습니다. 미움을 내려놓을 때 비로소 풀립니다.','법구경'],
+ ['마음이 모든 일에 앞섭니다. 맑은 마음으로 말하고 움직이면, 그림자가 몸을 따르듯 즐거움이 따릅니다.','법구경'],
+ ['쓸모없는 천 마디 말보다, 들으면 마음이 고요해지는 한 마디가 낫습니다.','법구경'],
+ ['싸움터에서 수많은 사람을 이기는 것보다, 자기 하나를 이기는 이가 가장 큰 승리자입니다.','법구경'],
+ ['건강은 가장 큰 이익이고, 만족은 가장 큰 재산입니다.','법구경'],
+ ['시간은 흐르고 흘러 낮과 밤이 금세 지나고, 하루하루 흘러 한 달이 어느새 지나갑니다.','원효대사 「발심수행장」'],
+ ['배고프면 나무 열매로 주린 속을 달래고, 목마르면 흐르는 물로 목을 축입니다.','원효대사 「발심수행장」'],
+ ['메아리 울리는 바위굴을 염불하는 집으로 삼고, 슬피 우는 기러기를 마음 벗으로 삼습니다.','원효대사 「발심수행장」'],
+ ['지혜로운 이가 하는 일은 쌀로 밥을 짓는 것이고, 어리석은 이가 하는 일은 모래로 밥을 지으려는 것입니다.','원효대사 「발심수행장」'],
+ ['지어진 모든 것은 꿈 같고 물거품 같고 그림자 같으며, 이슬 같고 번개 같습니다.','금강경'],
+ ['어디에도 머무는 바 없이 그 마음을 내십시오.','금강경'],
+ ['살아 있는 모든 것이 행복하기를, 편안하기를.','숫타니파타 「자애경」'],
+ ['소리에 놀라지 않는 사자처럼, 그물에 걸리지 않는 바람처럼, 흙탕물에 물들지 않는 연꽃처럼.','숫타니파타']
+];
+/* 절 한 바퀴: [장소 이름, 한 줄 설명, 사진 출처, 그 자리에서 도드라지는 소리] — 사진은 photos/절id/순번.jpg */
+const TOUR={
+ tongdosa:[['일주문','개울을 따라 걷다 보면 절의 첫 문이 나옵니다.','Bernard Gagnon · CC0',{stream:60,moktak:0,bell:10}],
+  ['대웅전','불상이 없는 법당입니다. 뒤편 금강계단을 향해 절을 올립니다.','Bernard Gagnon · CC0',{moktak:40,stream:15}],
+  ['대웅전 앞마당','처마 끝 풍경이 바람에 흔들립니다.','최옥석 · CC BY-SA 4.0',{chime:45,wind:35}],
+  ['부처님 사리탑','통도사에 모셔진 돌 사리탑입니다.','Bernard Gagnon · CC0',{bell:35,moktak:0}]],
+ unmunsa:[['처진소나무','가지가 땅을 향해 늘어진 오래된 소나무입니다.','Wikimedia Commons · CC0',{wind:40,moktak:0}],
+  ['대웅보전','운문사의 큰 법당입니다.','최옥석 · CC BY-SA 4.0',{moktak:40}],
+  ['삼층석탑','법당 앞마당에 돌탑이 서 있습니다.','한국문화관광연구원 · 공공누리 제1유형',{chime:40}],
+  ['만세루','너른 누각 마루에서 마당을 내다봅니다.','한국문화관광연구원 · 공공누리 제1유형',{rain:60,moktak:0}]],
+ naksansa:[['원통보전','관세음보살을 모신 낙산사의 중심 법당입니다.','Ashy Minivet · CC0',{moktak:40,wave:25}],
+  ['의상대','의상대사가 앉아 바다를 바라보았다는 자리의 정자입니다.','Bernard Gagnon · CC0',{wave:60,wind:45,moktak:0}],
+  ['홍련암 가는 바닷길','절벽 아래로 파도가 밀려옵니다.','Bernard Gagnon · CC0',{wave:85,moktak:0}],
+  ['홍련암','바다 절벽 위에 올라앉은 작은 암자입니다.','Bernard Gagnon · CC0',{wave:80,moktak:20}],
+  ['홍련암 앞 동해','법당 아래가 바로 바다입니다.','Giuseppe Milo · CC BY 3.0',{wave:95,moktak:0,bell:0}],
+  ['해수관음상','바다를 굽어보는 큰 관음상입니다.','Ashy Minivet · CC0',{wind:40,wave:40,bell:35}]],
+ buseoksa:[['안양루','돌계단을 올라 누각 아래를 지나면 무량수전 마당입니다.','Bernard Gagnon · CC0',{wind:40}],
+  ['무량수전','고려 때 지은 법당으로, 가운데가 볼록한 배흘림기둥으로 이름났습니다.','Bernard Gagnon · CC0',{moktak:40}],
+  ['부석','하늘에 떠올랐다는 바로 그 바위입니다.','Bernard Gagnon · CC0',{wind:55,moktak:0}],
+  ['선묘각','선묘를 모신 작은 집입니다.','Bernard Gagnon · CC0',{chime:45}],
+  ['안양루에서 본 산','뒤를 돌아보면 소백산 능선이 겹겹이 펼쳐집니다.','Bernard Gagnon · CC0',{wind:50,bell:35,moktak:0}]],
+ bulguksa:[['불국사','토함산 자락에 자리한 절입니다.','Bernard Gagnon · CC0',{wind:35}],
+  ['청운교와 백운교','부처님 나라로 오르는 돌계단 다리입니다.','Choi2451 · CC BY-SA 4.0',{chime:40}],
+  ['다보탑','화려하게 깎은 돌탑으로, 십 원짜리 동전에 새겨져 있습니다.','Bernard Gagnon · CC0',{moktak:35}],
+  ['석가탑','군더더기 없이 단정한 삼층 돌탑입니다.','Bernard Gagnon · CC0',{moktak:35,chime:35}],
+  ['석굴암 가는 길','산길을 십오 분쯤 걸으면 석굴암에 닿습니다.','Bernard Gagnon · CC0',{wind:50,moktak:0}],
+  ['석굴암 본존불','둥근 돌 천장 아래 부처님이 앉아 계십니다.','문화재청 · 공공누리 제1유형',{bell:40,wind:10,moktak:0}]],
+ sangwonsa:[['상원사','오대산 깊은 골짜기에 자리한 절입니다.','배윤석 · CC BY-SA 4.0',{stream:65}],
+  ['상원사 동종','지금 남아 있는 우리나라 종 가운데 가장 오래된 종입니다.','퍼블릭 도메인',{bell:55,stream:25,moktak:0}],
+  ['문수동자상','세조가 만났다는 아이의 모습으로 전해지는 불상입니다.','문화재청 · 공공누리 제1유형',{moktak:40,stream:20}]],
+ hoeamsa:[['회암사 터','오랫동안 땅에 묻혀 있던 너른 절터입니다.','Jjw · CC BY-SA 3.0',{wind:55,moktak:0}],
+  ['무학대사 탑','무학대사를 기리는 돌탑과 석등입니다.','Lawinc82 · CC BY-SA 4.0',{moktak:30,wind:30}]]
+};
+let spotOf={};
+const byId=id=>T.find(t=>t.id===id);
+
+/* ───────── 저장 ───────── */
+const LS={get(k,d){try{const v=localStorage.getItem('sansa.'+k);return v?JSON.parse(v):d}catch(e){return d}},
+          set(k,v){try{localStorage.setItem('sansa.'+k,JSON.stringify(v))}catch(e){}}};
+let mixes=LS.get('mix',{}), stamps=LS.get('stamp',{}), wishes=LS.get('wish',[]), timerMin=LS.get('timer',30), filter='all';
+// 모든 절에 목탁·범종은 기본으로 깔고, 풀벌레는 기본에서 뺀다(원하면 '다른 소리 더하기'에서 켬)
+const BASE={moktak:30,bell:35};
+const defMix=t=>Object.assign({},BASE,t.mix,{bug:0});
+const mixOf=id=>Object.assign(defMix(byId(id)),mixes[id]||{});
+// 지금 서 있는 장소에 맞춘 소리. 직접 0으로 꺼 둔 소리는 장소가 바뀌어도 켜지 않는다
+const NATURE=['wave','stream','rain','wind','bug'],TEMPLE=['moktak','bell','chime','yebul'];
+// 잠자리용이라 한 번에 두 가지만 낸다: 자연의 소리 하나 + 절의 소리 하나. 배합은 우리가 맞춰 두고 고르게 하지 않는다
+function effMix(id){const m=defMix(byId(id)),st=TOUR[id]&&TOUR[id][spotOf[id]||0];
+  if(st)Object.assign(m,st[3]);
+  const top=list=>list.reduce((b,k)=>(m[k]||0)>(m[b]||0)?k:b,list[0]),keep=[top(NATURE),top(TEMPLE)];
+  for(const k in m)if(!keep.includes(k))m[k]=0;
+  return m}
+
+/* ───────── 그림 ───────── */
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const P={
+ hall:(x,y,k=1)=>`<g transform="translate(${x},${y}) scale(${k})"><rect x="-48" y="28" width="96" height="6" fill="#8d8779"/><rect x="-40" y="0" width="80" height="28" fill="#7c2f24"/>
+  <rect x="-31" y="6" width="15" height="18" fill="#f2c264"/><rect x="-7.5" y="6" width="15" height="18" fill="#f2c264"/><rect x="16" y="6" width="15" height="18" fill="#f2c264"/>
+  <path d="M-64 -3 Q-49 -6 -40 -25 L40 -25 Q49 -6 64 -3 Q0 9 -64 -3Z" fill="#26343f" stroke="#c9a04f" stroke-width="1.3"/><path d="M-40 -25 L40 -25" stroke="#c9a04f" stroke-width="2.4"/></g>`,
+ pagoda:(x,y,k=1,n=3,w0=28)=>{let o=`<g transform="translate(${x},${y}) scale(${k})" fill="#a9a394" stroke="#5f5b51" stroke-width=".8"><rect x="${-w0/2-8}" y="-4" width="${w0+16}" height="4"/>`;
+  const step=n>4?13:19;for(let i=0;i<n;i++){const w=w0-(w0*.55/n)*i,y0=-4-i*step;o+=`<rect x="${-w/2}" y="${y0-step+7}" width="${w}" height="${step-7}"/><path d="M${-w/2-6} ${y0-step+7} L${w/2+6} ${y0-step+7} L${w/2+1} ${y0-step} L${-w/2-1} ${y0-step}Z"/>`}
+  const top=-4-n*step;return o+`<path d="M0 ${top} V${top-11}" stroke-width="2"/><circle cx="0" cy="${top-12}" r="2.2"/></g>`},
+ pine:(x,y,k=1)=>`<g transform="translate(${x},${y}) scale(${k})"><path d="M0 0 Q-5 -22 3 -40 Q9 -52 2 -66" stroke="#6b4a33" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <g fill="#1f5a45" stroke="#4a9a74" stroke-width="1"><ellipse cx="-13" cy="-44" rx="21" ry="7"/><ellipse cx="15" cy="-57" rx="23" ry="8"/><ellipse cx="0" cy="-72" rx="17" ry="6.5"/></g></g>`,
+ pond:(x,y)=>`<ellipse cx="${x}" cy="${y}" rx="52" ry="13" fill="#274a78" stroke="#6f93c4"/><path d="M${x-18} ${y-2} h20 M${x-6} ${y+4} h26" stroke="#f6e7b4" stroke-width="1.6" opacity=".7" stroke-linecap="round"/>`,
+ float:(x,y,k=1)=>`<g transform="translate(${x},${y}) scale(${k})"><ellipse cx="0" cy="26" rx="62" ry="7" fill="#f6e7b4" opacity=".16"/><path d="M-52 2 Q-58 -24 -22 -31 Q18 -40 48 -22 Q62 -4 38 9 Q0 18 -52 2Z" fill="#5d6470" stroke="#aeb6c6" stroke-width="1.4"/><path d="M-30 -12 Q-8 -20 18 -14 M-12 2 Q10 -2 30 -6" stroke="#8c94a4" fill="none"/></g>`,
+ gat:(x,y,k=1)=>`<g transform="translate(${x},${y}) scale(${k})" fill="#a9a394" stroke="#5f5b51"><path d="M-27 0 Q-32 -26 -14 -40 L14 -40 Q32 -26 27 0Z"/><circle cx="0" cy="-50" r="12"/><rect x="-21" y="-70" width="42" height="7" rx="2"/></g>`,
+ crag:(x,y,k=1)=>`<path transform="translate(${x},${y}) scale(${k})" d="M-90 0 Q-60 -70 -30 -105 Q-10 -124 14 -122 Q40 -100 58 -60 Q76 -20 96 0Z" fill="#283241" stroke="#56627a"/>`,
+ ruin:(x,y,k=1)=>`<g transform="translate(${x},${y}) scale(${k})" fill="#9a9486" stroke="#5f5b51"><rect x="-130" y="6" width="260" height="7"/><rect x="-100" y="-4" width="200" height="7"/>
+  <rect x="-84" y="-12" width="12" height="8"/><rect x="-44" y="-12" width="12" height="8"/><rect x="34" y="-12" width="12" height="8"/><rect x="74" y="-12" width="12" height="8"/>
+  <rect x="-7" y="-10" width="14" height="6"/><rect x="-3" y="-34" width="6" height="24"/><rect x="-9" y="-48" width="18" height="14" fill="#f2c264"/><path d="M-15 -48 L15 -48 L0 -62Z"/></g>`
+};
+function mtn(r,W,H,y,amp,fill,stroke){let x=-20,d=`M-20 ${H} L-20 ${y}`;while(x<W+20){const w=55+r()*75,h=amp*(.45+r()*.55);d+=` Q${x+w/2} ${y-h*2} ${x+w} ${y}`;x+=w}
+  return `<path d="${d} L${W+20} ${H}Z" fill="${fill}" stroke="${stroke}" stroke-width="1"/>`}
+function scene(t,uid){
+  const s=t.scene,W=400,H=250,r=rng(T.indexOf(t)*977+13),mx=s.moon||300;let o='';
+  o+=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${t.name}의 밤 풍경 그림"><defs>
+   <linearGradient id="sk${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1130"/><stop offset=".7" stop-color="#1c2a56"/><stop offset="1" stop-color="${s.sun?'#8a4d4a':'#34406d'}"/></linearGradient>
+   <radialGradient id="mg${uid}"><stop offset="0" stop-color="#fff3c9" stop-opacity=".5"/><stop offset="1" stop-color="#fff3c9" stop-opacity="0"/></radialGradient></defs>
+   <rect width="${W}" height="${H}" fill="url(#sk${uid})"/>`;
+  for(let i=0;i<34;i++)o+=`<circle cx="${(r()*W).toFixed(0)}" cy="${(r()*125).toFixed(0)}" r="${(.5+r()*.9).toFixed(1)}" fill="#fff" opacity="${(.25+r()*.6).toFixed(2)}"/>`;
+  if(s.sun){o+=`<ellipse cx="${mx}" cy="162" rx="190" ry="46" fill="#f09a55" opacity=".3"/><circle cx="${mx}" cy="162" r="22" fill="#f6b56a"/>`}
+  else o+=`<circle cx="${mx}" cy="56" r="50" fill="url(#mg${uid})"/><circle cx="${mx}" cy="56" r="20" fill="#f6e7b4"/>`;
+  if(s.type==='sea'){
+    o+=mtn(r,W,H,162,s.isles?26:13,'#1a2850','#2f4274')+`<rect y="162" width="${W}" height="88" fill="#15305c"/>`;
+    for(let i=0;i<7;i++){const y=172+i*11,hw=20-i*1.6;o+=`<path d="M${mx-hw} ${y} h${hw*2}" stroke="${s.sun?'#f6b56a':'#f6e7b4'}" stroke-width="2" opacity="${.6-i*.06}" stroke-linecap="round"/>`}
+    for(let i=0;i<9;i++){const y=176+r()*66,x=r()*330;o+=`<path d="M${x.toFixed(0)} ${y.toFixed(0)} q9 -5 18 0 t18 0 t18 0" stroke="#7fa3d6" fill="none" opacity=".5"/>`}
+    const cl=`<path d="M0 250 L0 116 Q30 102 64 110 Q90 118 98 150 Q106 190 130 216 Q142 236 152 250Z" fill="#2a303c" stroke="#5a657a"/>`+P.hall(42,104,.46)+P.pine(84,116,.62)
+      +`<path d="M96 222 q10 -6 20 0 t20 0" stroke="#dfe9f7" fill="none" opacity=".7"/>`;
+    o+=s.cliff==='r'?`<g transform="translate(${W},0) scale(-1,1)">${cl}</g>`:cl;
+  }else{
+    const big=s.type==='mountain'||s.type==='rock'||s.type==='valley';
+    o+=mtn(r,W,H,180,big?70:38,'#1d2c57','#3a4d82')+mtn(r,W,H,196,big?48:26,'#1d4650','#3f7a83');
+    o+=`<ellipse cx="${120+r()*160}" cy="${150+r()*20}" rx="130" ry="7" fill="#fff" opacity=".09"/>`;
+    if(s.type==='rock')o+=`<path d="M70 250 Q140 118 200 98 Q260 118 330 250Z" fill="#283241" stroke="#56627a"/>`;
+    o+=mtn(r,W,H,214,14,'#17363a','#2f6a66')+`<rect y="226" width="${W}" height="24" fill="#152b2c"/>`;
+    if(s.type==='valley')o+=`<path d="M212 150 C188 176 252 192 216 216 C196 232 244 240 236 250 L160 250 C170 240 158 230 184 216 C216 196 162 180 196 150Z" fill="#8dbdd6" opacity=".8"/>
+      <ellipse cx="176" cy="238" rx="13" ry="6" fill="#3a4350"/><ellipse cx="232" cy="222" rx="10" ry="5" fill="#3a4350"/><ellipse cx="200" cy="196" rx="7" ry="4" fill="#3a4350"/>`;
+    for(const p of (s.props||[]))o+=P[p[0]](...p.slice(1));
+    if(s.rain)for(let i=0;i<46;i++){const x=r()*W,y=r()*H;o+=`<path d="M${x.toFixed(0)} ${y.toFixed(0)} l-4 14" stroke="#cfe0ff" opacity=".28"/>`}
+  }
+  return o+'</svg>';
+}
+
+/* ───────── 소리 ───────── */
+let AC=null,master,NW,NP,NB,ONE,layers={},vols={},playing=false,cur=null,endAt=0,listenSec=0,silentEl=null,wakeLock=null;
+const G=v=>{const g=AC.createGain();g.gain.value=v;return g};
+const F=(type,f,q)=>{const b=AC.createBiquadFilter();b.type=type;b.frequency.value=f;if(q)b.Q.value=q;return b};
+const chain=(...n)=>{for(let i=0;i<n.length-1;i++)n[i].connect(n[i+1]);return n[n.length-1]};
+const XF=4; // 녹음 끝과 처음을 겹쳐 잇는 시간(초)
+// 녹음 파일 하나를 끊김 없이 이어 트는 층. 재생기 둘을 번갈아 겹쳐 가며 잇는다
+function fileLayer(id,out){
+  const mk=()=>{const el=new Audio('sound/'+id+'.mp3');el.preload='auto';const g=G(0);AC.createMediaElementSource(el).connect(g);g.connect(out);return {el,g}};
+  const a=mk(),b=mk();let act=a,busy=false;
+  const swap=()=>{if(busy)return;busy=true;const nx=act===a?b:a,old=act,t=AC.currentTime;try{nx.el.currentTime=0}catch(e){}nx.el.play().catch(()=>{});
+    nx.g.gain.cancelScheduledValues(t);nx.g.gain.setValueAtTime(0,t);nx.g.gain.linearRampToValueAtTime(1,t+XF);
+    old.g.gain.cancelScheduledValues(t);old.g.gain.setValueAtTime(1,t);old.g.gain.linearRampToValueAtTime(0,t+XF);
+    act=nx;setTimeout(()=>{old.el.pause();busy=false},(XF+.5)*1000)};
+  [a,b].forEach(x=>{x.el.addEventListener('timeupdate',()=>{if(x===act&&x.el.duration&&x.el.duration-x.el.currentTime<XF+.4)swap()});
+    x.el.addEventListener('ended',()=>{if(x===act)swap()})});
+  return {els:[a.el,b.el],rewind(){[a,b].forEach(x=>{try{x.el.currentTime=0}catch(e){}})},start(){act.g.gain.setValueAtTime(1,AC.currentTime);act.el.play().catch(()=>{})},pause(){a.el.pause();b.el.pause()}};
+}
+function initAudio(){
+  if(AC)return;AC=new (window.AudioContext||window.webkitAudioContext)();
+  master=G(1);const comp=AC.createDynamicsCompressor();chain(master,comp,AC.destination);
+  // 무음 파일을 함께 틀어, 무음 스위치가 켜진 아이폰에서도 소리가 나고 재생 상태가 유지되도록 돕는다
+  const n=4000,b=new Uint8Array(44+n).fill(128,44),dv=new DataView(b.buffer),w=(o,s)=>[...s].forEach((c,i)=>b[o+i]=c.charCodeAt(0));
+  w(0,'RIFF');dv.setUint32(4,36+n,true);w(8,'WAVEfmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,1,true);dv.setUint32(24,8000,true);dv.setUint32(28,8000,true);dv.setUint16(32,1,true);dv.setUint16(34,8,true);w(36,'data');dv.setUint32(40,n,true);
+  silentEl=new Audio(URL.createObjectURL(new Blob([b],{type:'audio/wav'})));silentEl.loop=true;
+}
+// 멀리서 들려오는 느낌: 높은 소리를 깎아 내고(먼 소리는 먹먹하다) 아주 작게 튼다
+const FAR={wave:[800,.05,.17],stream:[1000,.05,.16],rain:[1300,.05,.17],wind:[900,.05,.18],bug:[2200,.03,.1],moktak:[2600,.04,.13],bell:[2200,.05,.15],chime:[4200,.03,.1],yebul:[2600,.04,.13]};
+const far=id=>FAR[id.replace(/\d+$/,'')];
+const gainOf=(id,v)=>v>0?far(id)[1]+(far(id)[2]-far(id)[1])*Math.min(100,v)/100:0;
+function ensure(id){if(layers[id])return layers[id];const g=G(0),lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=far(id)[0];lp.Q.value=.5;g.connect(lp);lp.connect(master);return layers[id]={g,lp,fl:fileLayer(id,g),on:false}}
+function applyVol(id,v,tc){vols[id]=v;if(!AC||!playing)return;if(!(v>0)&&!layers[id])return;const L=ensure(id);
+  L.g.gain.setTargetAtTime(gainOf(id,v),AC.currentTime,tc||.6);
+  if(v>0&&!L.on){L.fl.start();L.on=true}
+  else if(!(v>0)&&L.on)setTimeout(()=>{if(!(vols[id]>0)&&L.on){L.fl.pause();L.on=false}},2500)}
+const rnd=(a,b)=>a+Math.random()*(b-a);
+// 잠을 돕는 구성: 아주 조용한 바람이 바탕으로 계속 깔리고, 물소리·종소리 같은 또렷한 소리는 이따금 멀리서 다가왔다가 사라진다
+const BED=.05;let nextAcc=0,accBusy=false,accTok=0,lastAcc='',nextBed=0;
+// 바람: 대부분은 잔잔하게, 가끔만 살짝 일었다가 곧바로 가라앉는다.
+// 같은 세기로 머무는 일이 없도록 1.4~2.4초마다 다음 세기를 정해 쉬지 않고 천천히 오르내린다.
+let bedT=0,bedV=0,bedUp=false;
+function startBed(){const L=ensure('wind'),t=AC.currentTime;bedV=.034;bedUp=false;bedT=t+1.5;
+  L.g.gain.cancelScheduledValues(t);L.g.gain.setValueAtTime(0,t);L.g.gain.linearRampToValueAtTime(bedV,bedT);
+  L.lp.frequency.cancelScheduledValues(t);L.lp.frequency.setValueAtTime(760,t);
+  if(!L.on){L.fl.start();L.on=true}}
+function tickBed(){const L=layers.wind;if(!playing||!L)return;const now=AC.currentTime;if(bedT<now)bedT=now;
+  while(bedT<now+5){const d=rnd(1.4,2.4);let v;
+    if(!bedUp&&Math.random()<.13){v=rnd(.054,.066);bedUp=true}            // 가끔 이는 바람: 꼭대기에 머물지 않고 바로 내려온다
+    else{bedUp=false;do{v=rnd(.026,.043)}while(Math.abs(v-bedV)<.004)}     // 잔잔한 바람: 조금씩만 흔들린다
+    bedT+=d;bedV=v;L.g.gain.linearRampToValueAtTime(v,bedT);L.lp.frequency.linearRampToValueAtTime(560+v*6000,bedT)}}
+function accentPool(id){const m=effMix(id),p=[];for(const k of NATURE)if(k!=='wind'&&m[k]>0)p.push(k);for(const k of TEMPLE)if(m[k]>0)p.push(k);for(const k of ['bell','moktak'])if(!p.includes(k))p.push(k);return {m,p}}
+// i=다가오는 시간, h=머무는 시간, o=사라지는 시간, gap=다음 소리까지 쉬는 시간(초)
+const ACC={bell:{i:.3,h:[6,7.5],o:4,gap:[12,24],clips:['bell1','bell2','bell3']},moktak:{i:.3,h:[8,9.5],o:2,gap:[12,24],clips:['moktak1']},
+  chime:{i:3,h:[8,12],o:5,gap:[18,36]},yebul:{i:4,h:[12,16],o:6,gap:[18,36]},nature:{i:7,h:[14,20],o:9,gap:[18,36]}};
+function tickAccent(){if(!playing||accBusy||AC.currentTime<nextAcc)return;
+  const {m,p}=accentPool(cur),bag=[];p.forEach(k=>{bag.push(k);if(k==='bell'||k==='moktak')bag.push(k)}); // 종·목탁은 두 배로 자주
+  let k=bag[Math.random()*bag.length|0];if(k===lastAcc){const o=bag.filter(x=>x!==k);if(o.length)k=o[Math.random()*o.length|0]}lastAcc=k;
+  const c=ACC[k]||ACC.nature,file=c.clips?c.clips[Math.random()*c.clips.length|0]:k,L=ensure(file),t=AC.currentTime+.15;
+  const pk=gainOf(k,m[k]||40)*.8,hold=rnd(c.h[0],c.h[1]),total=c.i+hold+c.o,g=L.g.gain,tok=++accTok;
+  if(c.clips)L.fl.rewind();
+  g.cancelScheduledValues(t);g.setValueAtTime(0,t);g.linearRampToValueAtTime(pk,t+c.i);g.setValueAtTime(pk,t+c.i+hold);g.linearRampToValueAtTime(0,t+total);
+  L.fl.start();L.on=true;accBusy=true;nextAcc=t+total+rnd(c.gap[0],c.gap[1]);
+  setTimeout(()=>{if(tok===accTok){L.fl.pause();L.on=false;accBusy=false}},(total+1)*1000)}
+function applySpot(id){if(playing&&cur===id&&!accBusy)nextAcc=Math.min(nextAcc,AC.currentTime+5)}
+function sched(){}
+function fadePlan(){if(!AC)return;const now=AC.currentTime,g=master.gain;g.cancelScheduledValues(now);
+  if(!endAt){g.setTargetAtTime(1,now,.3);return}
+  const left=Math.max(1,(endAt-Date.now())/1000),fade=Math.min(300,timerMin*60*.25,left);
+  g.setValueAtTime(1,now);g.setValueAtTime(1,now+left-fade);g.linearRampToValueAtTime(.0001,now+left)}
+function play(id){
+  initAudio();AC.resume();cur=id;listenSec=0;const m=effMix(id);playing=true;
+  startBed();nextAcc=AC.currentTime+9;accBusy=false;
+  endAt=timerMin?Date.now()+timerMin*60000:0;fadePlan();sched();
+  silentEl.play().catch(()=>{});
+  if('mediaSession' in navigator){try{navigator.mediaSession.metadata=new MediaMetadata({title:byId(id).name+'의 밤소리',artist:'산사 밤마실'})}catch(e){}}
+  render();
+}
+function stop(done){
+  if(!playing)return;playing=false;endAt=0;accTok++;accBusy=false;const now=AC.currentTime;master.gain.cancelScheduledValues(now);master.gain.setTargetAtTime(0,now,.12);
+  setTimeout(()=>{if(!playing){for(const k in layers){layers[k].fl.pause();layers[k].on=false;layers[k].g.gain.cancelScheduledValues(0);layers[k].g.gain.value=0}AC.suspend();silentEl.pause()}},600);
+  releaseWake();if(done)toast('소리가 꺼졌습니다. 편안한 밤 되세요.');else document.getElementById('sleep').hidden=true;
+  render();
+}
+function setTimer(min){timerMin=min;LS.set('timer',min);if(playing){endAt=min?Date.now()+min*60000:0;fadePlan()}render()}
+async function requestWake(){try{if('wakeLock' in navigator)wakeLock=await navigator.wakeLock.request('screen')}catch(e){}}
+function releaseWake(){try{wakeLock&&wakeLock.release()}catch(e){}wakeLock=null}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){if(!document.getElementById('sleep').hidden&&playing)requestWake();if(playing&&AC)AC.resume()}});
+const leftText=()=>{if(!endAt)return '끄실 때까지 계속 들립니다';const m=Math.max(0,Math.ceil((endAt-Date.now())/60000));return `${m}분 뒤 서서히 꺼집니다`};
+setInterval(()=>{
+  if(!playing)return;tickBed();tickAccent();
+  if(endAt&&Date.now()>=endAt){stop(true);return}
+  if(++listenSec===60&&!stamps[cur]){stamps[cur]=new Date().toISOString().slice(0,10);LS.set('stamp',stamps);toast(byId(cur).name+' 순례 도장이 찍혔습니다');if(route().v!=='t')render()}
+  const lt=leftText();document.getElementById('pl-left').textContent=lt;document.getElementById('sl-left').textContent=lt;
+  const tn=document.getElementById('tnote');if(tn)tn.textContent=lt;
+},1000);
+
+/* ───────── 화면 ───────── */
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const route=()=>{const h=location.hash.replace(/^#\/?/,'').split('/');return {v:h[0]||'home',id:h[1]}};
+const COVER={naksansa:5};
+const tagsOf=(t,extra)=>`<p class="tags">${t.g.map(g=>GROUPS[g]).concat(extra||[]).join(' · ')}</p>`;
+let toastT;function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),4200)}
+let verseShift=0;
+function verse(){const d=new Date(),day=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);return VERSES[(day+verseShift)%VERSES.length]}
+
+function vHome(){
+  const v=verse(),list=T.filter(t=>filter==='all'||t.g.includes(filter)),n=Object.keys(stamps).length;
+  return `<section class="hero"><div class="heroimg"><img src="photos/naksansa/5.jpg" alt="바다 절벽 위의 낙산사 홍련암"></div>
+   <p class="credit hc">사진: Giuseppe Milo · CC BY 3.0</p>
+   <div class="cap"><p class="eyebrow">산사마실의 잠자리</p><h1>잠들기 전,<br>절 한 곳 다녀오세요</h1><p class="where">절을 고르면 그곳의 밤소리가 멀리서 흐릅니다</p></div></section>
+  <section class="card quote"><h2>오늘의 한 구절</h2><p class="verse">${v[0]}</p><p class="verse-src">— ${v[1]}</p>
+   <button class="btn" data-act="verse" style="margin-top:14px;min-height:52px">다른 구절 보기</button></section>
+  <h2 class="sec">오늘 밤은 어디로 갈까요</h2><p class="secsub">모두 ${T.length}곳 · 다녀온 곳 ${n}곳</p>
+  <div class="chips" role="group" aria-label="절 묶음 고르기">${[['all','전체'],...Object.entries(GROUPS)].map(([k,l])=>`<button class="chip" data-act="filter" data-k="${k}" aria-pressed="${filter===k}">${l}</button>`).join('')}</div>
+  <div class="list">${list.map((t,i)=>`<a class="tcard" href="#/t/${t.id}"><div class="tmedia">${TOUR[t.id]?`<img loading="lazy" src="photos/${t.id}/${COVER[t.id]||1}.jpg" alt="${t.name} 사진">`:scene(t,'c'+i)}${stamps[t.id]?'<span class="seal">다녀옴</span>':''}
+   <div class="tname"><h3>${t.name}</h3><p class="where">${t.where}</p></div></div>
+   <div class="tx"><p class="line">${t.line}</p>${tagsOf(t)}</div></a>`).join('')}</div>`;
+}
+function tourHtml(t){
+  const stops=TOUR[t.id];
+  if(!stops)return `<section class="tour"><div class="frame art">${scene(t,'t')}</div><div class="cap"><h1>${t.name}</h1><p class="where">${t.where}</p><p class="credit">이 절의 사진은 준비하고 있습니다.</p></div></section>`;
+  const i=Math.min(spotOf[t.id]||0,stops.length-1),s=stops[i];
+  return `<section class="tour" aria-label="${t.name} 한 바퀴">
+   <div class="frame"><img src="photos/${t.id}/${i+1}.jpg" alt="${t.name} ${s[0]} 사진" onload="this.parentNode.classList.toggle('tall',this.naturalHeight>this.naturalWidth)"><span class="count">${i+1} / ${stops.length}</span></div>
+   <div class="cap"><h1>${t.name}</h1><p class="where">${t.where}</p><p class="spot">${s[0]}</p><p class="spotcap">${s[1]}</p><p class="credit">사진: ${s[2]}</p></div>
+   <div class="tnav"><button data-act="spot" data-d="-1" ${i?'':'disabled'}>◀ 이전 곳</button><button data-act="spot" data-d="1" ${i<stops.length-1?'':'disabled'}>다음 곳 ▶</button></div></section>`;
+}
+function vTemple(id){
+  const t=byId(id);if(!t)return vHome();const m=effMix(id),on=playing&&cur===id;
+  const isStory=t.g.includes('story'),yt=t.yt?`https://youtu.be/${t.yt}`:'https://www.youtube.com/results?search_query='+encodeURIComponent('산사마실 '+t.name.split(' ')[0]);
+  const mine=wishes.filter(w=>w.id===id);
+  return `${tourHtml(t)}
+  <div class="ttags">${tagsOf(t,stamps[id]?'다녀온 곳':'')}</div>
+  <button class="btn main ${on?'on':''}" data-act="${on?'stop':'play'}" data-id="${id}">${on?'소리 끄기':t.name.split(' ')[0]+'의 밤소리 켜기'}</button>
+  <p class="note ctr">조용한 바람 소리가 바탕에 깔리고, 목탁과 종소리, 물소리가<br>이따금 멀리서 들려왔다가 사라집니다.</p>
+  <p class="note ctr" id="tnote" style="margin-top:4px">${on?leftText():(timerMin?`켜면 ${timerMin}분 뒤 서서히 꺼집니다`:'끄실 때까지 계속 들립니다')}</p>
+  <section class="card"><h2>꺼지는 시간</h2>
+   <div class="timer" role="group" aria-label="꺼지는 시간 고르기">${[15,30,45,60,0].map(n=>`<button data-act="timer" data-min="${n}" aria-pressed="${timerMin===n}">${n?n+'분':'계속'}</button>`).join('')}</div>
+   <p class="note">시간이 다 되어 갈수록 소리가 조금씩 작아지다가 꺼집니다.</p>
+   <button class="btn" data-act="sleep" style="margin-top:12px">화면 어둡게 하고 눕기</button>
+   <p class="note">화면을 까맣게 해 둔 채로 소리만 이어집니다. 충전기에 꽂아 두시면 좋습니다.</p></section>
+  <section class="card"><h2>${isStory?'이 절에 전해 오는 이야기':'이 절은'}</h2><p class="story">${t.story}</p>
+   ${isStory?`<p class="note">바탕 자료: ${t.src}</p><a class="btn" href="${yt}" target="_blank" rel="noopener">유튜브 산사마실에서 이 이야기 듣기</a>`
+            :'<p class="note">이 절의 긴 이야기는 유튜브 산사마실에서 준비하고 있습니다.</p>'}</section>
+  <section class="card"><h2>기도 한 줄 올리기</h2>
+   <textarea id="wish" maxlength="80" placeholder="예) 우리 식구 모두 건강하게 해 주세요" aria-label="기도 한 줄"></textarea>
+   <button class="btn" data-act="wish" data-id="${id}" style="margin-top:10px">${t.name.split(' ')[0]}에 올리기</button>
+   <p class="note">이 글은 이 기기에만 남고, 다른 사람에게는 보이지 않습니다.</p>
+   ${mine.length?`<div style="margin-top:10px">${mine.map(wishRow).join('')}</div>`:''}</section>`;
+}
+const wishRow=w=>`<div class="wish"><p>${esc(w.text)}<small>${byId(w.id)?byId(w.id).name:''} · ${w.date}</small></p><button data-act="delwish" data-ts="${w.ts}" aria-label="이 기도 글 지우기">지우기</button></div>`;
+function vMap(){
+  const K=82,W=394,H=575,X=lon=>(lon-125.4)*K,Y=lat=>(38.75-lat)*K*1.23,D=typeof MAPD==='object'?MAPD:{kor:'',prk:'',mini:''};
+  const lab={tongdosa:[14,5,'start'],unmunsa:[-14,5,'end'],naksansa:[14,5,'start'],buseoksa:[-14,5,'end'],bulguksa:[14,9,'start'],sangwonsa:[-14,5,'end'],hoeamsa:[0,-16,'middle'],bunhwangsa:[14,-1,'start'],bongjeongam:[-14,3,'end'],jeongamsa:[14,5,'start'],beopheungsa:[-14,5,'end'],boriam:[14,5,'start'],bomunsa:[0,25,'middle'],hyangiram:[-14,9,'end'],gatbawi:[-14,3,'end']};
+  const nudge={bunhwangsa:[-6,-8],bulguksa:[7,7],bongjeongam:[-8,-2],naksansa:[7,0]};
+  let grat='';for(let la=34;la<=38;la++)grat+=`<path d="M0 ${Y(la).toFixed(1)}H${W}"/><text x="6" y="${(Y(la)-5).toFixed(1)}">${la}°</text>`;
+  for(let lo=126;lo<=130;lo++)grat+=`<path d="M${X(lo).toFixed(1)} 0V${H}"/>`;
+  const dots=T.map((t,i)=>{const o=nudge[t.id]||[0,0],x=X(t.lon)+o[0],y=Y(t.lat)+o[1],l=lab[t.id],got=stamps[t.id];
+    return `<a href="#/t/${t.id}" aria-label="${t.name}"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="20" fill="transparent"/>
+     <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9.5" fill="${GCOL[t.g[0]]}" stroke="${got?'#b5503f':'#0a0c10'}" stroke-width="${got?2.5:1.2}"/>
+     <text x="${x.toFixed(1)}" y="${(y+3.8).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#17130a">${i+1}</text>
+     <text class="lb" x="${(x+l[0]).toFixed(1)}" y="${(y+l[1]).toFixed(1)}" text-anchor="${l[2]}">${t.name.split(' ')[0]}</text></a>`}).join('');
+  return `<h2 class="sec">지도에서 절 찾기</h2><p class="secsub">동그라미나 이름을 누르면 그 절로 갑니다.</p>
+  <section class="map"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="절 위치를 표시한 한반도 지도">
+   <defs><linearGradient id="nfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset=".13" stop-color="#fff"/></linearGradient>
+    <mask id="nmask"><rect width="${W}" height="${H}" fill="url(#nfade)"/></mask>
+    <radialGradient id="seaglow" cx=".5" cy=".45" r=".7"><stop offset="0" stop-color="#11151d"/><stop offset="1" stop-color="#0a0c10"/></radialGradient></defs>
+   <rect width="${W}" height="${H}" fill="url(#seaglow)"/>
+   <g class="grat">${grat}</g>
+   <g mask="url(#nmask)"><path d="${D.prk}" fill="#12151b" stroke="#c8a96a" stroke-opacity=".3" stroke-width=".6"/>
+    <path d="${D.kor}" fill="#191e27" stroke="#c8a96a" stroke-opacity=".75" stroke-width=".8" stroke-linejoin="round"/></g>
+   <g class="sea"><text x="26" y="300">서 해</text><text x="350" y="215">동 해</text><text x="150" y="505">남 해</text><text x="138" y="553" font-size="10">제주</text></g>
+   <g transform="translate(366 34)" stroke="#c8a96a" fill="none" stroke-width=".8"><path d="M0 14V-14M-4 -8L0 -14L4 -8"/><text x="0" y="27" text-anchor="middle" fill="#a59c87" stroke="none" font-size="10">북</text></g>
+   <g transform="translate(318 432)"><rect x="-6" y="-8" width="76" height="142" fill="#0a0c10" stroke="#c8a96a" stroke-opacity=".3" stroke-width=".6"/>
+    <path d="${D.mini}" fill="#232a36" stroke="#c8a96a" stroke-opacity=".5" stroke-width=".4"/><rect x="12.6" y="48.9" width="43.2" height="64.1" fill="none" stroke="#e3cf9a" stroke-width=".7"/>
+    <text x="32" y="128" text-anchor="middle" fill="#a59c87" font-size="9.5" letter-spacing="2">한반도</text></g>
+   ${dots}</svg><p class="credit" style="text-align:center">지도 자료: Natural Earth (퍼블릭 도메인)</p></section>
+  <div class="legend">${T.map((t,i)=>`<a href="#/t/${t.id}"><span class="num" style="background:${GCOL[t.g[0]]}">${i+1}</span><span>${t.name}<small>${t.where}</small></span></a>`).join('')}</div>`;
+}
+function vBook(){
+  const n=Object.keys(stamps).length;
+  return `<h2 class="sec">순례 수첩</h2><p class="secsub">절의 밤소리를 1분 넘게 들으면 도장이 찍힙니다. 지금까지 ${T.length}곳 가운데 ${n}곳.</p>
+  <div class="stamps">${T.map(t=>`<a class="stamp ${stamps[t.id]?'got':''}" href="#/t/${t.id}"><span>${t.name.split(' ')[0]}${stamps[t.id]?`<small>${stamps[t.id].slice(5).replace('-','.')}</small>`:''}</span></a>`).join('')}</div>
+  <section class="card"><h2>내가 올린 기도</h2>${wishes.length?wishes.map(wishRow).join(''):'<p class="note" style="margin:0">아직 올린 기도가 없습니다. 절 화면 아래쪽에서 한 줄 올릴 수 있습니다.</p>'}</section>`;
+}
+function render(){
+  const r=route(),view=document.getElementById('view');
+  view.innerHTML=r.v==='t'?vTemple(r.id):r.v==='map'?vMap():r.v==='book'?vBook():vHome();
+  document.querySelectorAll('#tabs a').forEach(a=>{const on=a.dataset.tab===(r.v==='t'?'home':r.v);on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
+  const br=document.getElementById('brand');if(r.v==='t'){br.textContent='‹ 절 목록으로';br.className='backpill'}else{br.textContent='산사 밤마실';br.className=''}
+  const pl=document.getElementById('player');pl.hidden=!playing;
+  if(playing){const t=byId(cur);document.getElementById('pl-name').textContent=t.name+'의 밤소리';document.getElementById('pl-left').textContent=leftText();document.getElementById('pl-link').href='#/t/'+cur;
+    document.getElementById('sl-name').textContent=t.name+'의 밤';document.getElementById('sl-left').textContent=leftText()}
+}
+addEventListener('hashchange',()=>{render();scrollTo(0,0)});
+document.addEventListener('click',e=>{
+  // 절로 들어서는 순간 그 절의 소리가 함께 나도록, 절 링크를 누를 때 바로 켠다
+  const lk=e.target.closest('a[href^="#/t/"]');
+  if(lk){const id=lk.getAttribute('href').slice(4);if(byId(id)&&!(playing&&cur===id)){spotOf[id]=0;play(id)}return}
+  const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;
+  if(a==='spot'){const id=route().id,n=TOUR[id].length;spotOf[id]=Math.max(0,Math.min(n-1,(spotOf[id]||0)+ +b.dataset.d));applySpot(id);render()}
+  else if(a==='play')play(b.dataset.id);
+  else if(a==='stop')stop(false);
+  else if(a==='timer')setTimer(+b.dataset.min);
+  else if(a==='filter'){filter=b.dataset.k;render()}
+  else if(a==='verse'){verseShift++;render()}
+  else if(a==='big'){const on=document.documentElement.classList.toggle('big');LS.set('big',on);b.setAttribute('aria-pressed',on);b.textContent=on?'글씨 보통':'글씨 크게'}
+  else if(a==='sleep'){if(!playing){const r=route();play(r.v==='t'&&byId(r.id)?r.id:(cur||T[0].id))}document.getElementById('sleep').hidden=false;requestWake()}
+  else if(a==='wake'){document.getElementById('sleep').hidden=true;releaseWake()}
+  else if(a==='wish'){const el=document.getElementById('wish'),tx=el.value.trim();if(!tx){toast('기도 한 줄을 먼저 적어 주세요');el.focus();return}
+    wishes.unshift({id:b.dataset.id,text:tx,date:new Date().toISOString().slice(0,10),ts:Date.now()});LS.set('wish',wishes);render();toast('기도를 올렸습니다')}
+  else if(a==='delwish'){wishes=wishes.filter(w=>String(w.ts)!==b.dataset.ts);LS.set('wish',wishes);render()}
+});
+document.addEventListener('input',e=>{
+  const el=e.target;if(!el.matches||!el.matches('input[data-snd]'))return;const r=route(),s=el.dataset.snd,v=+el.value;
+  document.getElementById('o-'+s).textContent=v;(mixes[r.id]=mixes[r.id]||{})[s]=v;LS.set('mix',mixes);
+  if(playing&&cur===r.id)applyVol(s,v);
+});
+if(LS.get('big',false)){document.documentElement.classList.add('big');const b=document.getElementById('bigbtn');b.setAttribute('aria-pressed','true');b.textContent='글씨 보통'}
+render();
+</script>
+</body>
+</html>
