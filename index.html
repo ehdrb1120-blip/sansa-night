@@ -6,6 +6,11 @@
 <title>산사 밤마실</title>
 <meta name="description" content="잠들기 전, 절 한 곳 다녀오세요. 우리나라 옛 절과 기도도량의 밤소리를 들으며 잠드는 곳.">
 <meta name="theme-color" content="#0a0c10">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="산사 밤마실">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
@@ -69,6 +74,15 @@ main{max-width:720px;margin:0 auto;padding:0 22px}
 .dots i{width:7px;height:7px;border-radius:50%;background:rgba(239,230,210,.35)}.dots i.on{background:var(--gold2)}
 .inapp{margin:26px 0 0;padding:18px 18px 16px;border:1px solid rgba(200,169,106,.45);border-radius:14px;background:rgba(200,169,106,.07);text-align:center}
 .inapp p{font-size:.95rem;line-height:1.7}.inapp .btn{margin-top:12px}
+.btn.share{margin-top:12px;background:#fee500;color:#191600;border:0;font-weight:700}
+.install{margin-top:12px}
+.sbox{margin:26px 0 0;text-align:center}.sbox .note{margin-top:8px}
+#guide{position:fixed;inset:0;z-index:55;background:rgba(5,6,9,.94);display:flex;align-items:center;justify-content:center;padding:20px}
+#guide[hidden]{display:none}
+#guide .in{max-width:420px;width:100%;background:#12151b;border:1px solid var(--line);border-radius:18px;padding:22px 18px 18px;text-align:center}
+#guide h2{font-size:1.25rem;margin-bottom:6px}#guide .step{display:flex;gap:14px;align-items:center;text-align:left;margin-top:16px;font-size:1.05rem;line-height:1.55}
+#guide .step svg{flex:0 0 96px;height:72px;background:#f2f2f7;border-radius:12px}
+#guide .step b{color:var(--gold2)}
 .swhint{color:var(--sub);font-size:.84rem;text-align:center;margin-top:12px;letter-spacing:.03em}
 .tnav{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 22px 4px}
 .tnav button{min-height:56px;border-radius:999px;border:1px solid var(--line);background:transparent;font-size:.98rem;letter-spacing:.06em}
@@ -182,6 +196,13 @@ footer{max-width:720px;margin:56px auto 0;padding:26px 22px 0;border-top:1px sol
   <div class="moon"></div><h2 id="sl-name"></h2><p id="sl-left"></p>
   <button data-act="wake">화면 밝히기</button>
 </div>
+<div id="guide" hidden role="dialog" aria-label="홈 화면에 놓는 방법"><div class="in">
+  <h2>휴대폰 첫 화면에 놓기</h2><p class="note" style="margin:0">아이폰은 두 번만 누르면 됩니다.</p>
+  <div class="step"><svg viewBox="0 0 96 72" aria-hidden="true"><rect x="0" y="50" width="96" height="22" fill="#e5e5ea"/><g fill="none" stroke="#0a84ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M40 60h-4v-0M48 46v14M43 51l5-5 5 5"/><rect x="40" y="52" width="16" height="14" rx="2"/></g><circle cx="48" cy="58" r="15" fill="none" stroke="#ff9f0a" stroke-width="2.5"/></svg>
+   <p><b>1.</b> 화면 아래쪽 가운데의 <b>네모에 화살표</b> 단추를 누르세요.</p></div>
+  <div class="step"><svg viewBox="0 0 96 72" aria-hidden="true"><rect x="6" y="20" width="84" height="32" rx="7" fill="#fff"/><text x="12" y="41" font-size="11" fill="#111">홈 화면에 추가</text><rect x="72" y="28" width="14" height="14" rx="3" fill="none" stroke="#111" stroke-width="1.6"/><path d="M79 31v8M75 35h8" stroke="#111" stroke-width="1.6"/><rect x="4" y="18" width="88" height="36" rx="9" fill="none" stroke="#ff9f0a" stroke-width="2.5"/></svg>
+   <p><b>2.</b> 아래로 내려 <b>홈 화면에 추가</b>를 누르고, 오른쪽 위 <b>추가</b>를 누르세요.</p></div>
+  <button class="btn" data-act="guideclose" style="margin-top:20px">알겠습니다</button></div></div>
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script src="map-data.js"></script>
@@ -227,11 +248,16 @@ const T=[
   story:'무너지는 집에서 서까래 세 개를 지고 나온 꿈. 며칠째 잠 못 이루던 장수 이성계에게, 무학대사는 그것이 임금 왕(王) 자라고 풀어 주었다고 합니다. 조선을 세운 태조는 스승이 머물던 회암사를 자주 찾았고, 왕위에서 물러난 뒤에도 이곳에 머물렀습니다. 지금은 너른 절터와 돌만 남아 그 시절을 전합니다.',
   src:'조선왕조실록 태조실록, 고려사, 회암사 전승',mix:{wind:40,bug:40,moktak:15},
   scene:{type:'yard',moon:300,props:[['ruin',200,214,1],['pine',60,222,1]]}},
- {id:'bunhwangsa',name:'분황사',where:'경북 경주',g:['story'],lat:35.841,lon:129.234,
+ {id:'bunhwangsa',yt:'2uqrCAGqius',name:'분황사',where:'경북 경주',g:['story'],lat:35.841,lon:129.234,
   line:'해골에 고인 물을 달게 마신 밤',
   story:'당나라로 공부하러 가던 길, 원효는 비를 피해 들어간 굴에서 목이 말라 바가지의 물을 달게 마셨습니다. 아침에 보니 그곳은 오래된 무덤이었고, 바가지는 해골이었다고 전해집니다. 마음먹기에 따라 세상이 달라진다는 것을 안 원효는 발길을 돌렸고, 훗날 경주 분황사에 가장 오래 머물며 글을 썼습니다.',
   src:'송고승전, 삼국유사',mix:{bug:50,rain:20,chime:25},
   scene:{type:'yard',moon:310,props:[['pagoda',200,226,2.1,3,36],['pine',55,222,.9]]}},
+ {id:'songgwangsa',name:'송광사',where:'전남 순천 · 조계산',g:['story'],lat:35.000,lon:127.274,
+  line:'지팡이를 꽂고 떠난 스님, 마른 나무로 남은 이야기',
+  story:'고려 때 보조국사 지눌은 조계산의 작은 절에 들어와, 짚고 온 지팡이를 뜰에 꽂았습니다. 그 지팡이에서 잎이 나 나무로 자랐는데, 스님이 세상을 떠나자 나무도 말라 버렸다고 전합니다. 그 나무는 지금도 고향수라는 이름으로 서 있습니다. 지눌 뒤로 열여섯 분의 국사가 이 절에서 나와, 송광사는 스님의 보배를 뜻하는 승보사찰로 불립니다.',
+  src:'김군수 찬 「보조국사비」, 송광사에 전해 오는 이야기',mix:{stream:55,wind:25,chime:25},
+  scene:{type:'yard',moon:300,props:[['hall',200,150,1],['pine',60,224,1]]}},
  {id:'bongjeongam',name:'봉정암',where:'강원 인제 · 설악산',g:['jeok'],lat:38.158,lon:128.445,
   line:'설악산 가장 높은 곳의 기도처',
   story:'설악산 깊은 곳, 해발 천이백 미터가 넘는 자리에 있는 암자입니다. 신라의 자장율사가 부처님 진신사리를 모셨다고 전해지며, 바위 위에 선 오층석탑이 그 사리탑입니다. 백담사에서 계곡을 따라 대여섯 시간을 걸어야 닿는 곳이라, 오르는 길 자체가 기도라고들 합니다.',
@@ -337,6 +363,14 @@ const TOUR={
   ['선각왕사비','가을 산을 등지고 선 옛 스님의 비석입니다.','국가유산청 · 공공누리 제1유형',{}],
   ['숲속 언덕의 사리탑','소나무 숲 언덕 위에 무학대사의 사리탑이 있습니다.','국가유산청 · 공공누리 제1유형',{}],
   ['해 질 녘 사리탑','노을 속에 홀로 선 사리탑입니다.','국가유산청 · 공공누리 제1유형',{}]],
+ songgwangsa:[['봄날의 송광사','연등과 꽃이 함께 피는 절 마당입니다.','한국관광공사 · 공공누리 제1유형',{}],
+  ['국사전','이 절에서 나온 열여섯 국사를 모신 법당입니다.','국가유산청 · 공공누리 제1유형',{}],
+  ['안개 속 하사당','스님들이 머물던 오래된 집입니다. 지붕 위에 작은 환기창이 있습니다.','국가유산청 · 공공누리 제1유형',{}],
+  ['약사전','아픈 이를 낫게 해 주는 약사여래를 모신 작은 법당입니다.','국가유산청 · 공공누리 제1유형',{}],
+  ['영산전','부처님의 일생을 그린 그림이 있는 법당입니다.','국가유산청 · 공공누리 제1유형',{}],
+  ['조계산 자락','산자락 아래로 전각들이 이어집니다.','한국관광공사 · 공공누리 제1유형',{}],
+  ['꽃나무 아래 스님들','봄이면 꽃나무 아래로 스님들이 지나갑니다.','한국관광공사 · 공공누리 제1유형',{}],
+  ['천자암 쌍향수','지눌 스님과 제자의 지팡이가 자랐다고 전하는 두 그루 향나무입니다.','한국관광공사 · 공공누리 제1유형',{}]],
  bunhwangsa:[['분황사 들머리','신라 선덕여왕 때 세운 절로 들어서는 문입니다.','Christophe95 · CC BY-SA 4.0',{}],
   ['보광전','약사여래 부처님을 모신 법당입니다.','Alain Seguin · CC BY-SA 3.0',{}],
   ['돌사자','오래된 돌탑의 네 귀퉁이를 지키는 돌사자입니다.','Junho Jung · CC BY-SA 3.0',{}],
@@ -497,6 +531,25 @@ setInterval(()=>{
   const lt=leftText();document.getElementById('pl-left').textContent=lt;document.getElementById('sl-left').textContent=lt;
   const tn=document.getElementById('tnote');if(tn)tn.textContent=lt;
 },1000);
+// 카카오톡으로 보내기: 휴대폰 공유 창(카카오톡이 보임)을 열고, 안 되면 주소를 복사해 둔다
+const BASEURL=location.origin+location.pathname;
+async function shareTo(id){const t=id&&byId(id),url=BASEURL+(t?'#/t/'+t.id:''),
+    text=t?`${t.name}의 밤소리 — 잠들기 전, ${t.name.split(' ')[0]}에 다녀오세요. (산사 밤마실)`:'산사 밤마실 — 잠들기 전, 절 한 곳 다녀오세요.';
+  if(navigator.share){try{await navigator.share({title:'산사 밤마실',text,url});return}catch(e){if(e&&e.name==='AbortError')return}}
+  const all=text+'\n'+url;let ok=false;try{await navigator.clipboard.writeText(all);ok=true}catch(e){}
+  if(!ok){const ta=document.createElement('textarea');ta.value=all;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{ok=document.execCommand('copy')}catch(e){}ta.remove()}
+  toast(ok?'주소를 복사했어요. 카카오톡 대화창에 길게 눌러 붙여 넣으세요.':'주소: '+url)}
+const shareBox=id=>`<div class="sbox"><button class="btn share" data-act="share" data-id="${id||''}">카카오톡으로 보내기</button>${installBtn()}</div>`;
+// 휴대폰 첫 화면에 놓기: 안드로이드 크롬은 설치 창을 바로 띄우고, 아이폰은 그림 안내를 보여 준다. 이미 설치했으면 숨긴다
+let installEvt=null;const STANDALONE=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const IOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;render()});
+addEventListener('appinstalled',()=>{installEvt=null;LS.set('installed',true);toast('휴대폰 첫 화면에 산사 밤마실이 생겼습니다');render()});
+function installBtn(){if(STANDALONE||LS.get('installed',false)||INAPP)return '';if(!installEvt&&!IOS)return '';
+  return '<button class="btn install" data-act="install">휴대폰 첫 화면에 놓기</button><p class="note">한 번 눌러 두면 다음부터 첫 화면에서 바로 열립니다.</p>'}
+async function doInstall(){if(installEvt){installEvt.prompt();try{const r=await installEvt.userChoice;if(r.outcome==='accepted')LS.set('installed',true)}catch(e){}installEvt=null;render();return}
+  if(IOS)document.getElementById('guide').hidden=false}
+if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 // 카카오톡·인스타그램 같은 앱 안의 브라우저는 화면이 꺼지면 소리를 멈추는 일이 많아, 사파리·크롬으로 열도록 안내한다
 const UA=navigator.userAgent,INAPP=/KAKAOTALK/i.test(UA)?'kakao':/Instagram|FBAN|FBAV|NAVER\(inapp|Line\/|DaumApps|everytimeApp|BAND\//i.test(UA)?'other':'';
 function inappNote(){if(!INAPP)return '';
@@ -517,6 +570,7 @@ function vHome(){
   return `<section class="hero"><div class="heroimg"><img src="photos/naksansa/5.jpg" alt="바다 절벽 위의 낙산사 홍련암"></div>
    <p class="credit hc">사진: Giuseppe Milo · CC BY 3.0</p>
    <div class="cap"><p class="eyebrow">산사마실의 잠자리</p><h1>잠들기 전,<br>절 한 곳 다녀오세요</h1><p class="where">절을 고르면 그곳의 밤소리가 멀리서 흐릅니다</p></div></section>
+  ${shareBox('')}
   <section class="card quote"><h2>오늘의 한 구절</h2><p class="verse">${v[0]}</p><p class="verse-src">— ${v[1]}</p>
    <button class="btn" data-act="verse" style="margin-top:14px;min-height:52px">다른 구절 보기</button></section>
   ${inappNote()}
@@ -547,6 +601,7 @@ function vTemple(id){
   <button class="btn main ${on?'on':''}" data-act="${on?'stop':'play'}" data-id="${id}">${on?'소리 끄기':t.name.split(' ')[0]+'의 밤소리 켜기'}</button>
   <p class="note ctr">조용한 바람 소리가 바탕에 깔리고, 목탁과 종소리, 물소리가<br>이따금 멀리서 들려왔다가 사라집니다.</p>
   <p class="note ctr" id="tnote" style="margin-top:4px">${on?leftText():(timerMin?`켜면 ${timerMin}분 뒤 서서히 꺼집니다`:'끄실 때까지 계속 들립니다')}</p>
+  ${shareBox(id)}
   ${inappNote()}
   <section class="card"><h2>꺼지는 시간</h2>
    <div class="timer" role="group" aria-label="꺼지는 시간 고르기">${[15,30,45,60,0].map(n=>`<button data-act="timer" data-min="${n}" aria-pressed="${timerMin===n}">${n?n+'분':'계속'}</button>`).join('')}</div>
@@ -565,7 +620,7 @@ function vTemple(id){
 const wishRow=w=>`<div class="wish"><p>${esc(w.text)}<small>${byId(w.id)?byId(w.id).name:''} · ${w.date}</small></p><button data-act="delwish" data-ts="${w.ts}" aria-label="이 기도 글 지우기">지우기</button></div>`;
 function vMap(){
   const K=82,W=394,H=575,X=lon=>(lon-125.4)*K,Y=lat=>(38.75-lat)*K*1.23,D=typeof MAPD==='object'?MAPD:{kor:'',prk:'',mini:''};
-  const lab={tongdosa:[14,5,'start'],unmunsa:[-14,5,'end'],naksansa:[14,5,'start'],buseoksa:[-14,5,'end'],bulguksa:[14,9,'start'],sangwonsa:[-14,5,'end'],hoeamsa:[0,-16,'middle'],bunhwangsa:[14,-1,'start'],bongjeongam:[-14,3,'end'],jeongamsa:[14,5,'start'],beopheungsa:[-14,5,'end'],boriam:[14,5,'start'],bomunsa:[0,25,'middle'],hyangiram:[-14,9,'end'],gatbawi:[-14,3,'end']};
+  const lab={tongdosa:[14,5,'start'],unmunsa:[-14,5,'end'],naksansa:[14,5,'start'],buseoksa:[-14,5,'end'],bulguksa:[14,9,'start'],sangwonsa:[-14,5,'end'],hoeamsa:[0,-16,'middle'],bunhwangsa:[14,-1,'start'],bongjeongam:[-14,3,'end'],jeongamsa:[14,5,'start'],beopheungsa:[-14,5,'end'],boriam:[14,5,'start'],bomunsa:[0,25,'middle'],hyangiram:[-14,9,'end'],songgwangsa:[-14,5,'end'],gatbawi:[-14,3,'end']};
   const nudge={bunhwangsa:[-6,-8],bulguksa:[7,7],bongjeongam:[-8,-2],naksansa:[7,0]};
   let grat='';for(let la=34;la<=38;la++)grat+=`<path d="M0 ${Y(la).toFixed(1)}H${W}"/><text x="6" y="${(Y(la)-5).toFixed(1)}">${la}°</text>`;
   for(let lo=126;lo<=130;lo++)grat+=`<path d="M${X(lo).toFixed(1)} 0V${H}"/>`;
@@ -620,6 +675,9 @@ document.addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;
   if(a==='spot'){const sw=document.getElementById('swipe');if(sw){const id=sw.dataset.id,n=TOUR[id].length,j=Math.max(0,Math.min(n-1,(spotOf[id]||0)+ +b.dataset.d));sw.scrollTo({left:j*sw.clientWidth,behavior:'smooth'})}}
   else if(a==='play')play(b.dataset.id);
+  else if(a==='share')shareTo(b.dataset.id);
+  else if(a==='install')doInstall();
+  else if(a==='guideclose')document.getElementById('guide').hidden=true;
   else if(a==='external')location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(location.href);
   else if(a==='stop')stop(false);
   else if(a==='timer')setTimer(+b.dataset.min);
