@@ -60,6 +60,16 @@ main{max-width:720px;margin:0 auto;padding:0 22px}
 .spot::before{content:"";display:block;width:28px;height:1px;background:var(--gold);margin:0 auto 18px}
 .spotcap{font-size:1rem;color:var(--soft);margin-top:6px}
 .credit{color:#6f695b;font-size:.72rem;margin-top:10px}
+.swipe{display:flex;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.swipe::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;height:100%;overflow:hidden;scroll-snap-align:center;scroll-snap-stop:always}
+.arr{position:absolute;top:50%;z-index:2;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid rgba(227,207,154,.45);background:rgba(10,12,16,.45);color:#efe6d2;font-size:1.5rem;line-height:1;display:flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.arr.l{left:12px}.arr.r{right:12px}.arr[hidden]{display:none}
+.dots{position:absolute;left:0;right:0;bottom:14px;z-index:2;display:flex;justify-content:center;gap:8px;pointer-events:none}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(239,230,210,.35)}.dots i.on{background:var(--gold2)}
+.inapp{margin:26px 0 0;padding:18px 18px 16px;border:1px solid rgba(200,169,106,.45);border-radius:14px;background:rgba(200,169,106,.07);text-align:center}
+.inapp p{font-size:.95rem;line-height:1.7}.inapp .btn{margin-top:12px}
+.swhint{color:var(--sub);font-size:.84rem;text-align:center;margin-top:12px;letter-spacing:.03em}
 .tnav{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 22px 4px}
 .tnav button{min-height:56px;border-radius:999px;border:1px solid var(--line);background:transparent;font-size:.98rem;letter-spacing:.06em}
 .tnav button:disabled{opacity:.28}
@@ -68,7 +78,7 @@ main{max-width:720px;margin:0 auto;padding:0 22px}
 .card{margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
 .card h2{font-family:var(--sans);font-size:.86rem;letter-spacing:.28em;color:var(--gold);margin-bottom:16px}
 .card.quote{text-align:center}
-.verse{font-family:var(--serif);font-size:1.22rem;line-height:1.95}
+.verse{font-family:var(--serif);font-size:1.22rem;line-height:1.95;white-space:pre-line;word-break:keep-all;text-wrap:balance}
 .verse-src{color:var(--sub);font-size:.86rem;margin-top:14px;letter-spacing:.06em}
 .sec{font-size:1.45rem;margin:48px 0 4px;text-align:center}
 .secsub{color:var(--sub);font-size:.88rem;text-align:center;letter-spacing:.03em}
@@ -270,7 +280,7 @@ const VERSES=[
  ['메아리 울리는 바위굴을 염불하는 집으로 삼고, 슬피 우는 기러기를 마음 벗으로 삼습니다.','원효대사 「발심수행장」'],
  ['지혜로운 이가 하는 일은 쌀로 밥을 짓는 것이고, 어리석은 이가 하는 일은 모래로 밥을 지으려는 것입니다.','원효대사 「발심수행장」'],
  ['지어진 모든 것은 꿈 같고 물거품 같고 그림자 같으며, 이슬 같고 번개 같습니다.','금강경'],
- ['어디에도 머무는 바 없이 그 마음을 내십시오.','금강경'],
+ ['어디에도 머무는 바 없이\n그 마음을 내십시오.','금강경'],
  ['살아 있는 모든 것이 행복하기를, 편안하기를.','숫타니파타 「자애경」'],
  ['소리에 놀라지 않는 사자처럼, 그물에 걸리지 않는 바람처럼, 흙탕물에 물들지 않는 연꽃처럼.','숫타니파타']
 ];
@@ -305,7 +315,27 @@ const TOUR={
   ['상원사 동종','지금 남아 있는 우리나라 종 가운데 가장 오래된 종입니다.','퍼블릭 도메인',{bell:55,stream:25,moktak:0}],
   ['문수동자상','세조가 만났다는 아이의 모습으로 전해지는 불상입니다.','문화재청 · 공공누리 제1유형',{moktak:40,stream:20}]],
  hoeamsa:[['회암사 터','오랫동안 땅에 묻혀 있던 너른 절터입니다.','Jjw · CC BY-SA 3.0',{wind:55,moktak:0}],
-  ['무학대사 탑','무학대사를 기리는 돌탑과 석등입니다.','Lawinc82 · CC BY-SA 4.0',{moktak:30,wind:30}]]
+  ['무학대사 탑','무학대사를 기리는 돌탑과 석등입니다.','Lawinc82 · CC BY-SA 4.0',{moktak:30,wind:30}]],
+ bunhwangsa:[['분황사 들머리','신라 선덕여왕 때 세운 절로 들어서는 문입니다.','Christophe95 · CC BY-SA 4.0',{}],
+  ['보광전','약사여래 부처님을 모신 법당입니다.','Alain Seguin · CC BY-SA 3.0',{}],
+  ['돌사자','오래된 돌탑의 네 귀퉁이를 지키는 돌사자입니다.','Junho Jung · CC BY-SA 3.0',{}],
+  ['돌우물','나라를 지키는 용들이 살았다는 이야기가 전해 오는 신라 우물입니다.','Junho Jung · CC BY-SA 3.0',{}]],
+ bongjeongam:[['봉정암 오층석탑','설악산 바위 꼭대기에 부처님 사리를 모신 탑입니다.','손묵광 · CC BY-SA 4.0',{}],
+  ['안개 속 사리탑','안개가 끼면 탑만 홀로 하늘에 떠 있는 듯합니다.','손묵광 · CC BY-SA 4.0',{}]],
+ jeongamsa:[['수마노탑','부처님 사리를 모셨다는 일곱 층 돌탑입니다. 산비탈에 홀로 서 있습니다.','배윤석 · CC BY-SA 4.0',{}]],
+ bomunsa:[['보문사','낙가산 기슭에서 서해를 내려다보는 절입니다.','강화군 · CC BY-SA 4.0',{}],
+  ['극락보전','아미타 부처님을 모신 큰 법당입니다.','Dltjrrb1122 · CC BY-SA 4.0',{}],
+  ['목어와 법고','나무 물고기와 큰 북이 걸린 누각입니다.','Dltjrrb1122 · CC BY-SA 4.0',{}],
+  ['석실','바위굴 안의 법당입니다. 어부의 그물에 걸려 올라온 돌부처님들을 모셨다고 전합니다.','문화재청 · CC BY-SA 4.0',{}]],
+ boriam:[['보리암에서 본 남해','금산 꼭대기 절벽에서 남해 바다와 섬들이 내려다보입니다.','Pediagaller · CC BY-SA 3.0',{}]],
+ hyangiram:[['해탈문','커다란 바위 틈 좁은 길을 지나야 절에 닿습니다.','Garam · 저작자 표시',{}],
+  ['원통보전','연등이 가득 걸린 중심 법당입니다.','Garam · 저작자 표시',{}],
+  ['관음보살상','바다 쪽을 향해 서 계신 관음보살님입니다.','날개 · CC BY-SA 3.0',{}],
+  ['향일암 앞바다','해를 향한 암자라는 이름처럼 탁 트인 바다입니다.','날개 · CC BY-SA 3.0',{}],
+  ['안개 낀 금오산','바다 안개가 산자락을 덮은 날의 풍경입니다.','Garam · 저작자 표시',{}]],
+ gatbawi:[['갓바위 오르는 돌계단','천 개가 넘는 돌계단을 올라야 닿습니다.','HwangHuang · CC BY-SA 4.0',{}],
+  ['갓바위 부처님','머리에 넓적한 돌갓을 쓴 부처님입니다.','HwangHuang · CC BY-SA 4.0',{}],
+  ['팔공산 꼭대기','바위 봉우리 위에 앉아 산 아래를 굽어보십니다.','Ahn seung nam · CC BY-SA 4.0',{}]]
 };
 let spotOf={};
 const byId=id=>T.find(t=>t.id===id);
@@ -379,105 +409,51 @@ function scene(t,uid){
 }
 
 /* ───────── 소리 ───────── */
-let AC=null,master,NW,NP,NB,ONE,layers={},vols={},playing=false,cur=null,endAt=0,listenSec=0,silentEl=null,wakeLock=null;
-const G=v=>{const g=AC.createGain();g.gain.value=v;return g};
-const F=(type,f,q)=>{const b=AC.createBiquadFilter();b.type=type;b.frequency.value=f;if(q)b.Q.value=q;return b};
-const chain=(...n)=>{for(let i=0;i<n.length-1;i++)n[i].connect(n[i+1]);return n[n.length-1]};
-const XF=4; // 녹음 끝과 처음을 겹쳐 잇는 시간(초)
-// 녹음 파일 하나를 끊김 없이 이어 트는 층. 재생기 둘을 번갈아 겹쳐 가며 잇는다
-function fileLayer(id,out){
-  const mk=()=>{const el=new Audio('sound/'+id+'.mp3');el.preload='auto';const g=G(0);AC.createMediaElementSource(el).connect(g);g.connect(out);return {el,g}};
-  const a=mk(),b=mk();let act=a,busy=false;
-  const swap=()=>{if(busy)return;busy=true;const nx=act===a?b:a,old=act,t=AC.currentTime;try{nx.el.currentTime=0}catch(e){}nx.el.play().catch(()=>{});
-    nx.g.gain.cancelScheduledValues(t);nx.g.gain.setValueAtTime(0,t);nx.g.gain.linearRampToValueAtTime(1,t+XF);
-    old.g.gain.cancelScheduledValues(t);old.g.gain.setValueAtTime(1,t);old.g.gain.linearRampToValueAtTime(0,t+XF);
-    act=nx;setTimeout(()=>{old.el.pause();busy=false},(XF+.5)*1000)};
-  [a,b].forEach(x=>{x.el.addEventListener('timeupdate',()=>{if(x===act&&x.el.duration&&x.el.duration-x.el.currentTime<XF+.4)swap()});
-    x.el.addEventListener('ended',()=>{if(x===act)swap()})});
-  return {els:[a.el,b.el],rewind(){[a,b].forEach(x=>{try{x.el.currentTime=0}catch(e){}})},start(){act.g.gain.setValueAtTime(1,AC.currentTime);act.el.play().catch(()=>{})},pause(){a.el.pause();b.el.pause()}};
-}
-function initAudio(){
-  if(AC)return;AC=new (window.AudioContext||window.webkitAudioContext)();
-  master=G(1);const comp=AC.createDynamicsCompressor();chain(master,comp,AC.destination);
-  // 무음 파일을 함께 틀어, 무음 스위치가 켜진 아이폰에서도 소리가 나고 재생 상태가 유지되도록 돕는다
-  const n=4000,b=new Uint8Array(44+n).fill(128,44),dv=new DataView(b.buffer),w=(o,s)=>[...s].forEach((c,i)=>b[o+i]=c.charCodeAt(0));
-  w(0,'RIFF');dv.setUint32(4,36+n,true);w(8,'WAVEfmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,1,true);dv.setUint32(24,8000,true);dv.setUint32(28,8000,true);dv.setUint16(32,1,true);dv.setUint16(34,8,true);w(36,'data');dv.setUint32(40,n,true);
-  silentEl=new Audio(URL.createObjectURL(new Blob([b],{type:'audio/wav'})));silentEl.loop=true;
-}
-// 멀리서 들려오는 느낌: 높은 소리를 깎아 내고(먼 소리는 먹먹하다) 아주 작게 튼다
-const FAR={wave:[800,.05,.17],stream:[1000,.05,.16],rain:[1300,.05,.17],wind:[900,.05,.18],bug:[2200,.03,.1],moktak:[2600,.04,.13],bell:[2200,.05,.15],chime:[4200,.03,.1],yebul:[2600,.04,.13]};
-const far=id=>FAR[id.replace(/\d+$/,'')];
-const gainOf=(id,v)=>v>0?far(id)[1]+(far(id)[2]-far(id)[1])*Math.min(100,v)/100:0;
-function ensure(id){if(layers[id])return layers[id];const g=G(0),lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=far(id)[0];lp.Q.value=.5;g.connect(lp);lp.connect(master);return layers[id]={g,lp,fl:fileLayer(id,g),on:false}}
-function applyVol(id,v,tc){vols[id]=v;if(!AC||!playing)return;if(!(v>0)&&!layers[id])return;const L=ensure(id);
-  L.g.gain.setTargetAtTime(gainOf(id,v),AC.currentTime,tc||.6);
-  if(v>0&&!L.on){L.fl.start();L.on=true}
-  else if(!(v>0)&&L.on)setTimeout(()=>{if(!(vols[id]>0)&&L.on){L.fl.pause();L.on=false}},2500)}
-const rnd=(a,b)=>a+Math.random()*(b-a);
-// 잠을 돕는 구성: 아주 조용한 바람이 바탕으로 계속 깔리고, 물소리·종소리 같은 또렷한 소리는 이따금 멀리서 다가왔다가 사라진다
-const BED=.05;let nextAcc=0,accBusy=false,accTok=0,lastAcc='',nextBed=0;
-// 바람: 대부분은 잔잔하게, 가끔만 살짝 일었다가 곧바로 가라앉는다.
-// 같은 세기로 머무는 일이 없도록 1.4~2.4초마다 다음 세기를 정해 쉬지 않고 천천히 오르내린다.
-let bedT=0,bedV=0,bedUp=false;
-function startBed(){const L=ensure('wind'),t=AC.currentTime;bedV=.034;bedUp=false;bedT=t+1.5;
-  L.g.gain.cancelScheduledValues(t);L.g.gain.setValueAtTime(0,t);L.g.gain.linearRampToValueAtTime(bedV,bedT);
-  L.lp.frequency.cancelScheduledValues(t);L.lp.frequency.setValueAtTime(760,t);
-  if(!L.on){L.fl.start();L.on=true}}
-function tickBed(){const L=layers.wind;if(!playing||!L)return;const now=AC.currentTime;if(bedT<now)bedT=now;
-  while(bedT<now+5){const d=rnd(1.4,2.4);let v;
-    if(!bedUp&&Math.random()<.13){v=rnd(.054,.066);bedUp=true}            // 가끔 이는 바람: 꼭대기에 머물지 않고 바로 내려온다
-    else{bedUp=false;do{v=rnd(.026,.043)}while(Math.abs(v-bedV)<.004)}     // 잔잔한 바람: 조금씩만 흔들린다
-    bedT+=d;bedV=v;L.g.gain.linearRampToValueAtTime(v,bedT);L.lp.frequency.linearRampToValueAtTime(560+v*6000,bedT)}}
-function accentPool(id){const m=effMix(id),p=[];for(const k of NATURE)if(k!=='wind'&&m[k]>0)p.push(k);for(const k of TEMPLE)if(m[k]>0)p.push(k);for(const k of ['bell','moktak'])if(!p.includes(k))p.push(k);return {m,p}}
-// i=다가오는 시간, h=머무는 시간, o=사라지는 시간, gap=다음 소리까지 쉬는 시간(초)
-const ACC={bell:{i:.3,h:[6,7.5],o:4,gap:[12,24],clips:['bell1','bell2','bell3']},moktak:{i:.3,h:[8,9.5],o:2,gap:[12,24],clips:['moktak1']},
-  chime:{i:3,h:[8,12],o:5,gap:[18,36]},yebul:{i:4,h:[12,16],o:6,gap:[18,36]},nature:{i:7,h:[14,20],o:9,gap:[18,36]}};
-function tickAccent(){if(!playing||accBusy||AC.currentTime<nextAcc)return;
-  const {m,p}=accentPool(cur),bag=[];p.forEach(k=>{bag.push(k);if(k==='bell'||k==='moktak')bag.push(k)}); // 종·목탁은 두 배로 자주
-  let k=bag[Math.random()*bag.length|0];if(k===lastAcc){const o=bag.filter(x=>x!==k);if(o.length)k=o[Math.random()*o.length|0]}lastAcc=k;
-  const c=ACC[k]||ACC.nature,file=c.clips?c.clips[Math.random()*c.clips.length|0]:k,L=ensure(file),t=AC.currentTime+.15;
-  const pk=gainOf(k,m[k]||40)*.8,hold=rnd(c.h[0],c.h[1]),total=c.i+hold+c.o,g=L.g.gain,tok=++accTok;
-  if(c.clips)L.fl.rewind();
-  g.cancelScheduledValues(t);g.setValueAtTime(0,t);g.linearRampToValueAtTime(pk,t+c.i);g.setValueAtTime(pk,t+c.i+hold);g.linearRampToValueAtTime(0,t+total);
-  L.fl.start();L.on=true;accBusy=true;nextAcc=t+total+rnd(c.gap[0],c.gap[1]);
-  setTimeout(()=>{if(tok===accTok){L.fl.pause();L.on=false;accBusy=false}},(total+1)*1000)}
-function applySpot(id){if(playing&&cur===id&&!accBusy)nextAcc=Math.min(nextAcc,AC.currentTime+5)}
-function sched(){}
-function fadePlan(){if(!AC)return;const now=AC.currentTime,g=master.gain;g.cancelScheduledValues(now);
-  if(!endAt){g.setTargetAtTime(1,now,.3);return}
-  const left=Math.max(1,(endAt-Date.now())/1000),fade=Math.min(300,timerMin*60*.25,left);
-  g.setValueAtTime(1,now);g.setValueAtTime(1,now+left-fade);g.linearRampToValueAtTime(.0001,now+left)}
+// 절마다 바람·목탁·종소리를 미리 섞어 둔 20분짜리 파일(mix/절id.mp3)을 되풀이해 튼다.
+// 음악 앱처럼 보통 소리 파일을 트는 방식이라, 화면이 꺼지거나 다른 앱으로 넘어가도 소리가 이어진다.
+let playing=false,cur=null,endAt=0,startAt=0,wakeLock=null;
+const snd=new Audio();snd.loop=true;snd.preload='none';
+try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
 function play(id){
-  initAudio();AC.resume();cur=id;listenSec=0;const m=effMix(id);playing=true;
-  startBed();nextAcc=AC.currentTime+9;accBusy=false;
-  endAt=timerMin?Date.now()+timerMin*60000:0;fadePlan();sched();
-  silentEl.play().catch(()=>{});
-  if('mediaSession' in navigator){try{navigator.mediaSession.metadata=new MediaMetadata({title:byId(id).name+'의 밤소리',artist:'산사 밤마실'})}catch(e){}}
+  if(!snd.src.endsWith('mix/'+id+'.mp3'))snd.src='mix/'+id+'.mp3';
+  cur=id;playing=true;startAt=Date.now();snd.volume=1;
+  snd.play().catch(()=>{playing=false;render();toast('소리를 켜지 못했습니다. 소리 켜기 단추를 한 번 더 눌러 주세요')});
+  endAt=timerMin?Date.now()+timerMin*60000:0;
+  if('mediaSession' in navigator){try{navigator.mediaSession.metadata=new MediaMetadata({title:byId(id).name+'의 밤소리',artist:'산사 밤마실',artwork:[{src:'photos/naksansa/5.jpg',sizes:'1400x933',type:'image/jpeg'}]});
+    navigator.mediaSession.setActionHandler('pause',()=>stop(false));navigator.mediaSession.setActionHandler('play',()=>play(cur))}catch(e){}}
   render();
 }
 function stop(done){
-  if(!playing)return;playing=false;endAt=0;accTok++;accBusy=false;const now=AC.currentTime;master.gain.cancelScheduledValues(now);master.gain.setTargetAtTime(0,now,.12);
-  setTimeout(()=>{if(!playing){for(const k in layers){layers[k].fl.pause();layers[k].on=false;layers[k].g.gain.cancelScheduledValues(0);layers[k].g.gain.value=0}AC.suspend();silentEl.pause()}},600);
+  if(!playing)return;playing=false;endAt=0;snd.pause();
   releaseWake();if(done)toast('소리가 꺼졌습니다. 편안한 밤 되세요.');else document.getElementById('sleep').hidden=true;
   render();
 }
-function setTimer(min){timerMin=min;LS.set('timer',min);if(playing){endAt=min?Date.now()+min*60000:0;fadePlan()}render()}
+function setTimer(min){timerMin=min;LS.set('timer',min);if(playing)endAt=min?Date.now()+min*60000:0;render()}
 async function requestWake(){try{if('wakeLock' in navigator)wakeLock=await navigator.wakeLock.request('screen')}catch(e){}}
 function releaseWake(){try{wakeLock&&wakeLock.release()}catch(e){}wakeLock=null}
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){if(!document.getElementById('sleep').hidden&&playing)requestWake();if(playing&&AC)AC.resume()}});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!document.getElementById('sleep').hidden&&playing)requestWake()});
 const leftText=()=>{if(!endAt)return '끄실 때까지 계속 들립니다';const m=Math.max(0,Math.ceil((endAt-Date.now())/60000));return `${m}분 뒤 서서히 꺼집니다`};
+// 꺼지는 시간 확인: 화면이 꺼져 있을 때도 재생 중 신호(timeupdate)로 함께 확인한다
+function timerCheck(){if(!playing||!endAt)return;const left=(endAt-Date.now())/1000;
+  if(left<=0){stop(true);return}
+  const fade=Math.min(300,timerMin*60*.25);if(left<fade)try{snd.volume=Math.max(.02,left/fade)}catch(e){}}
+snd.addEventListener('timeupdate',timerCheck);
 setInterval(()=>{
-  if(!playing)return;tickBed();tickAccent();
-  if(endAt&&Date.now()>=endAt){stop(true);return}
-  if(++listenSec===60&&!stamps[cur]){stamps[cur]=new Date().toISOString().slice(0,10);LS.set('stamp',stamps);toast(byId(cur).name+' 순례 도장이 찍혔습니다');if(route().v!=='t')render()}
+  if(!playing)return;timerCheck();if(!playing)return;
+  if(Date.now()-startAt>=60000&&!stamps[cur]){stamps[cur]=new Date().toISOString().slice(0,10);LS.set('stamp',stamps);toast(byId(cur).name+' 순례 도장이 찍혔습니다');if(route().v!=='t')render()}
   const lt=leftText();document.getElementById('pl-left').textContent=lt;document.getElementById('sl-left').textContent=lt;
   const tn=document.getElementById('tnote');if(tn)tn.textContent=lt;
 },1000);
+// 카카오톡·인스타그램 같은 앱 안의 브라우저는 화면이 꺼지면 소리를 멈추는 일이 많아, 사파리·크롬으로 열도록 안내한다
+const UA=navigator.userAgent,INAPP=/KAKAOTALK/i.test(UA)?'kakao':/Instagram|FBAN|FBAV|NAVER\(inapp|Line\/|DaumApps|everytimeApp|BAND\//i.test(UA)?'other':'';
+function inappNote(){if(!INAPP)return '';
+  return `<div class="inapp"><p>지금은 ${INAPP==='kakao'?'카카오톡':'앱'} 안에서 보고 계십니다. 이대로는 화면을 끄면 소리가 멈출 수 있습니다.</p>
+   ${INAPP==='kakao'?'<button class="btn" data-act="external">사파리·크롬으로 열기</button>':'<p class="note" style="margin:6px 0 0">오른쪽 위 ⋯ 단추를 눌러 &lsquo;다른 브라우저로 열기&rsquo;를 골라 주세요.</p>'}</div>`}
 
 /* ───────── 화면 ───────── */
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const route=()=>{const h=location.hash.replace(/^#\/?/,'').split('/');return {v:h[0]||'home',id:h[1]}};
-const COVER={naksansa:5};
+const COVER={naksansa:5,gatbawi:2,hyangiram:2};
 const tagsOf=(t,extra)=>`<p class="tags">${t.g.map(g=>GROUPS[g]).concat(extra||[]).join(' · ')}</p>`;
 let toastT;function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),4200)}
 let verseShift=0;
@@ -490,6 +466,7 @@ function vHome(){
    <div class="cap"><p class="eyebrow">산사마실의 잠자리</p><h1>잠들기 전,<br>절 한 곳 다녀오세요</h1><p class="where">절을 고르면 그곳의 밤소리가 멀리서 흐릅니다</p></div></section>
   <section class="card quote"><h2>오늘의 한 구절</h2><p class="verse">${v[0]}</p><p class="verse-src">— ${v[1]}</p>
    <button class="btn" data-act="verse" style="margin-top:14px;min-height:52px">다른 구절 보기</button></section>
+  ${inappNote()}
   <h2 class="sec">오늘 밤은 어디로 갈까요</h2><p class="secsub">모두 ${T.length}곳 · 다녀온 곳 ${n}곳</p>
   <div class="chips" role="group" aria-label="절 묶음 고르기">${[['all','전체'],...Object.entries(GROUPS)].map(([k,l])=>`<button class="chip" data-act="filter" data-k="${k}" aria-pressed="${filter===k}">${l}</button>`).join('')}</div>
   <div class="list">${list.map((t,i)=>`<a class="tcard" href="#/t/${t.id}"><div class="tmedia">${TOUR[t.id]?`<img loading="lazy" src="photos/${t.id}/${COVER[t.id]||1}.jpg" alt="${t.name} 사진">`:scene(t,'c'+i)}${stamps[t.id]?'<span class="seal">다녀옴</span>':''}
@@ -501,9 +478,12 @@ function tourHtml(t){
   if(!stops)return `<section class="tour"><div class="frame art">${scene(t,'t')}</div><div class="cap"><h1>${t.name}</h1><p class="where">${t.where}</p><p class="credit">이 절의 사진은 준비하고 있습니다.</p></div></section>`;
   const i=Math.min(spotOf[t.id]||0,stops.length-1),s=stops[i];
   return `<section class="tour" aria-label="${t.name} 한 바퀴">
-   <div class="frame"><img src="photos/${t.id}/${i+1}.jpg" alt="${t.name} ${s[0]} 사진" onload="this.parentNode.classList.toggle('tall',this.naturalHeight>this.naturalWidth)"><span class="count">${i+1} / ${stops.length}</span></div>
-   <div class="cap"><h1>${t.name}</h1><p class="where">${t.where}</p><p class="spot">${s[0]}</p><p class="spotcap">${s[1]}</p><p class="credit">사진: ${s[2]}</p></div>
-   <div class="tnav"><button data-act="spot" data-d="-1" ${i?'':'disabled'}>◀ 이전 곳</button><button data-act="spot" data-d="1" ${i<stops.length-1?'':'disabled'}>다음 곳 ▶</button></div></section>`;
+   <div class="frame"><div class="swipe" id="swipe" data-id="${t.id}">${stops.map((x,j)=>`<div class="slide"><img ${Math.abs(j-i)>1?'loading="lazy"':''} src="photos/${t.id}/${j+1}.jpg" alt="${t.name} ${x[0]} 사진"></div>`).join('')}</div>
+    <span class="count" id="sw-count">${i+1} / ${stops.length}</span>
+    <button class="arr l" data-act="spot" data-d="-1" aria-label="이전 곳" ${i?'':'hidden'}>‹</button><button class="arr r" data-act="spot" data-d="1" aria-label="다음 곳" ${i<stops.length-1?'':'hidden'}>›</button>
+    <div class="dots" aria-hidden="true">${stops.map((x,j)=>`<i class="${j===i?'on':''}"></i>`).join('')}</div></div>
+   <p class="swhint">사진을 옆으로 밀면 다음 곳으로 넘어갑니다</p>
+   <div class="cap"><h1>${t.name}</h1><p class="where">${t.where}</p><p class="spot" id="sw-spot">${s[0]}</p><p class="spotcap" id="sw-cap">${s[1]}</p><p class="credit" id="sw-credit">사진: ${s[2]}</p></div></section>`;
 }
 function vTemple(id){
   const t=byId(id);if(!t)return vHome();const m=effMix(id),on=playing&&cur===id;
@@ -514,11 +494,12 @@ function vTemple(id){
   <button class="btn main ${on?'on':''}" data-act="${on?'stop':'play'}" data-id="${id}">${on?'소리 끄기':t.name.split(' ')[0]+'의 밤소리 켜기'}</button>
   <p class="note ctr">조용한 바람 소리가 바탕에 깔리고, 목탁과 종소리, 물소리가<br>이따금 멀리서 들려왔다가 사라집니다.</p>
   <p class="note ctr" id="tnote" style="margin-top:4px">${on?leftText():(timerMin?`켜면 ${timerMin}분 뒤 서서히 꺼집니다`:'끄실 때까지 계속 들립니다')}</p>
+  ${inappNote()}
   <section class="card"><h2>꺼지는 시간</h2>
    <div class="timer" role="group" aria-label="꺼지는 시간 고르기">${[15,30,45,60,0].map(n=>`<button data-act="timer" data-min="${n}" aria-pressed="${timerMin===n}">${n?n+'분':'계속'}</button>`).join('')}</div>
    <p class="note">시간이 다 되어 갈수록 소리가 조금씩 작아지다가 꺼집니다.</p>
    <button class="btn" data-act="sleep" style="margin-top:12px">화면 어둡게 하고 눕기</button>
-   <p class="note">화면을 까맣게 해 둔 채로 소리만 이어집니다. 충전기에 꽂아 두시면 좋습니다.</p></section>
+   <p class="note">휴대폰 화면을 꺼도 소리는 이어집니다. 충전기에 꽂아 두시면 좋습니다.</p></section>
   <section class="card"><h2>${isStory?'이 절에 전해 오는 이야기':'이 절은'}</h2><p class="story">${t.story}</p>
    ${isStory?`<p class="note">바탕 자료: ${t.src}</p><a class="btn" href="${yt}" target="_blank" rel="noopener">유튜브 산사마실에서 이 이야기 듣기</a>`
             :'<p class="note">이 절의 긴 이야기는 유튜브 산사마실에서 준비하고 있습니다.</p>'}</section>
@@ -563,11 +544,17 @@ function vBook(){
   <div class="stamps">${T.map(t=>`<a class="stamp ${stamps[t.id]?'got':''}" href="#/t/${t.id}"><span>${t.name.split(' ')[0]}${stamps[t.id]?`<small>${stamps[t.id].slice(5).replace('-','.')}</small>`:''}</span></a>`).join('')}</div>
   <section class="card"><h2>내가 올린 기도</h2>${wishes.length?wishes.map(wishRow).join(''):'<p class="note" style="margin:0">아직 올린 기도가 없습니다. 절 화면 아래쪽에서 한 줄 올릴 수 있습니다.</p>'}</section>`;
 }
+function setSpot(id,j){const st=TOUR[id];if(!st||!st[j])return;spotOf[id]=j;
+  const q=x=>document.getElementById(x);q('sw-count').textContent=(j+1)+' / '+st.length;q('sw-spot').textContent=st[j][0];q('sw-cap').textContent=st[j][1];q('sw-credit').textContent='사진: '+st[j][2];
+  document.querySelectorAll('.dots i').forEach((d,k)=>d.classList.toggle('on',k===j));const L=document.querySelector('.arr.l'),R=document.querySelector('.arr.r');L.hidden=!j;R.hidden=j>=st.length-1}
+function bindSwipe(){const sw=document.getElementById('swipe');if(!sw)return;const id=sw.dataset.id;sw.scrollLeft=(spotOf[id]||0)*sw.clientWidth;
+  let tm;sw.addEventListener('scroll',()=>{clearTimeout(tm);tm=setTimeout(()=>{const j=Math.round(sw.scrollLeft/sw.clientWidth);if(j!==(spotOf[id]||0))setSpot(id,j)},90)},{passive:true})}
 function render(){
   const r=route(),view=document.getElementById('view');
   view.innerHTML=r.v==='t'?vTemple(r.id):r.v==='map'?vMap():r.v==='book'?vBook():vHome();
   document.querySelectorAll('#tabs a').forEach(a=>{const on=a.dataset.tab===(r.v==='t'?'home':r.v);on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
   const br=document.getElementById('brand');if(r.v==='t'){br.textContent='‹ 절 목록으로';br.className='backpill'}else{br.textContent='산사 밤마실';br.className=''}
+  bindSwipe();
   const pl=document.getElementById('player');pl.hidden=!playing;
   if(playing){const t=byId(cur);document.getElementById('pl-name').textContent=t.name+'의 밤소리';document.getElementById('pl-left').textContent=leftText();document.getElementById('pl-link').href='#/t/'+cur;
     document.getElementById('sl-name').textContent=t.name+'의 밤';document.getElementById('sl-left').textContent=leftText()}
@@ -578,8 +565,9 @@ document.addEventListener('click',e=>{
   const lk=e.target.closest('a[href^="#/t/"]');
   if(lk){const id=lk.getAttribute('href').slice(4);if(byId(id)&&!(playing&&cur===id)){spotOf[id]=0;play(id)}return}
   const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;
-  if(a==='spot'){const id=route().id,n=TOUR[id].length;spotOf[id]=Math.max(0,Math.min(n-1,(spotOf[id]||0)+ +b.dataset.d));applySpot(id);render()}
+  if(a==='spot'){const sw=document.getElementById('swipe');if(sw){const id=sw.dataset.id,n=TOUR[id].length,j=Math.max(0,Math.min(n-1,(spotOf[id]||0)+ +b.dataset.d));sw.scrollTo({left:j*sw.clientWidth,behavior:'smooth'})}}
   else if(a==='play')play(b.dataset.id);
+  else if(a==='external')location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(location.href);
   else if(a==='stop')stop(false);
   else if(a==='timer')setTimer(+b.dataset.min);
   else if(a==='filter'){filter=b.dataset.k;render()}
@@ -590,11 +578,6 @@ document.addEventListener('click',e=>{
   else if(a==='wish'){const el=document.getElementById('wish'),tx=el.value.trim();if(!tx){toast('기도 한 줄을 먼저 적어 주세요');el.focus();return}
     wishes.unshift({id:b.dataset.id,text:tx,date:new Date().toISOString().slice(0,10),ts:Date.now()});LS.set('wish',wishes);render();toast('기도를 올렸습니다')}
   else if(a==='delwish'){wishes=wishes.filter(w=>String(w.ts)!==b.dataset.ts);LS.set('wish',wishes);render()}
-});
-document.addEventListener('input',e=>{
-  const el=e.target;if(!el.matches||!el.matches('input[data-snd]'))return;const r=route(),s=el.dataset.snd,v=+el.value;
-  document.getElementById('o-'+s).textContent=v;(mixes[r.id]=mixes[r.id]||{})[s]=v;LS.set('mix',mixes);
-  if(playing&&cur===r.id)applyVol(s,v);
 });
 if(LS.get('big',false)){document.documentElement.classList.add('big');const b=document.getElementById('bigbtn');b.setAttribute('aria-pressed','true');b.textContent='글씨 보통'}
 render();
