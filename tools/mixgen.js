@@ -21,6 +21,11 @@ const PLACE={tongdosa:{under:'stream',wind:.9,lp:0,bird:1},unmunsa:{under:'rain'
   bunhwangsa:{under:'rain',wind:.85,lp:20,bird:0},bongjeongam:{wind:1.3,lp:-120,bird:1},jeongamsa:{under:'stream',wind:.9,lp:-60,bird:1},
   beopheungsa:{wind:1.05,lp:-100,bird:1},boriam:{under:'wave',wind:1,lp:0,bird:1},bomunsa:{under:'wave',wind:.85,lp:40,bird:0},
   hyangiram:{under:'wave',wind:.8,lp:80,bird:0},gatbawi:{wind:1.25,lp:-60,bird:1}};
+// 밤새 종류: clips=잘라 둔 울음, gap=다음 울음까지(초). 작은 새는 6~7초, 큰 부엉이·올빼미는 드물게
+const BIRD={sojjeok:{clips:6,gap:[6,7]},sol:{clips:5,gap:[6,7.5]},olpp:{clips:2,gap:[9,12]},bueong:{clips:3,gap:[9,12]},suri:{clips:1,gap:[10,14]},ssok:{clips:3,gap:[10,14]},gin:{clips:4,gap:[8,11]}};
+// 절마다 다른 밤새 (bird 목록 가운데 하나가 몇 분씩 번갈아 운다)
+const BIRDS={tongdosa:['sojjeok'],unmunsa:['olpp'],buseoksa:['sol'],bulguksa:['ssok'],sangwonsa:['gin'],hoeamsa:['bueong'],bongjeongam:['suri'],
+  jeongamsa:['sojjeok','olpp'],beopheungsa:['sol','suri'],boriam:['ssok','sojjeok'],gatbawi:['suri','sojjeok']};
 const UNDER={stream:[650,.030],wave:[520,.042],rain:[900,.030]}; // [먹먹함 Hz, 세기]
 function lpCoef(fc,Q){const w=2*Math.PI*fc/SR,a=Math.sin(w)/(2*Q),c=Math.cos(w),a0=1+a;return [(1-c)/2/a0,(1-c)/a0,(1-c)/2/a0,-2*c/a0,(1-a)/a0]}
 function seedRng(str){let h=1779033703^str.length;for(const ch of str)h=Math.imul(h^ch.charCodeAt(0),3432918353),h=h<<13|h>>>19;
@@ -51,17 +56,18 @@ function render(t){
     for(let n=0;n<N;n++){const tt=n/SR;while(seg[si+1][0]<tt)si++;const [a0,g0]=seg[si],[a1,g1]=seg[si+1],g=g0+(g1-g0)*(tt-a0)/(a1-a0);
       const x=us[(o+n)%us.length],y=b[0]*x+y1;y1=b[1]*x-b[3]*y+y2;y2=b[2]*x-b[4]*y;out[n]+=y*g}}
   // 산속 절의 밤새: 6~7초마다 작게 한 번씩. 몇 분 울다가 잠깐 쉬고, 목탁·범종이 울릴 때는 비킨다
-  let birds=0;if(PL.bird){const clips=['owl1','owl2','owl3','owl4','owl5'];let bt2=rnd(4,8),stopAt=bt2+rnd(120,260);
-    while(bt2<D-10){if(bt2>stopAt){bt2+=rnd(30,70);stopAt=bt2+rnd(120,260);continue}
-      if(!busy.some(([a,b])=>bt2>a-1&&bt2<b+1)){const src=load(clips[R()*clips.length|0]),g=.032*rnd(.75,1.1),s0=Math.round(bt2*SR),bb=lpCoef(2400,.5);let y1=0,y2=0;
-        for(let j=0;j<src.length;j++){const x=src[j],y=bb[0]*x+y1;y1=bb[1]*x-bb[3]*y+y2;y2=bb[2]*x-bb[4]*y;if(s0+j<N)out[s0+j]+=y*g}birds++}
-      bt2+=rnd(6,7)}}
+  let birds=0;const kinds=BIRDS[t.id]||[];if(kinds.length){let ki=0,bt2=rnd(4,8),stopAt=bt2+rnd(120,260);
+    while(bt2<D-10){if(bt2>stopAt){bt2+=rnd(30,70);stopAt=bt2+rnd(120,260);ki=(ki+1)%kinds.length;continue}
+      const sp=kinds[ki],c=BIRD[sp];
+      if(!busy.some(([a,b])=>bt2>a-1&&bt2<b+1)){const src=load(sp+(1+(R()*c.clips|0))),g=.032*rnd(.75,1.1),s0=Math.round(bt2*SR),bb=lpCoef(2400,.5);let y1=0,y2=0;
+        for(let j=0;j<src.length;j++){const x=src[j],y=bb[0]*x+y1;y1=bb[1]*x-bb[3]*y+y2;y2=bb[2]*x-bb[4]*y;if(s0+j<N)out[s0+j]+=y*g}birds++;bt2+=src.length/SR}
+      bt2+=rnd(c.gap[0],c.gap[1])}}
   // 끝과 처음을 6초 겹쳐 이어, 반복 재생할 때 이음매가 들리지 않게
   const DS=D*SR,XS=X*SR,fin=new Float32Array(DS);
   for(let n=0;n<DS;n++)fin[n]=n<XS?out[n]*Math.sin(n/XS*Math.PI/2)+out[DS+n]*Math.cos(n/XS*Math.PI/2):out[n];
   let pk=0,ss=0;for(let n=0;n<DS;n++){fin[n]*=GAIN;const a=Math.abs(fin[n]);if(a>pk)pk=a;ss+=fin[n]*fin[n]}
   for(let n=0;n<DS;n++){const a=fin[n];if(Math.abs(a)>.9)fin[n]=Math.sign(a)*(.9+.09*Math.tanh((Math.abs(a)-.9)/.09))}
-  return {fin,pk,rms:Math.sqrt(ss/DS),ev,pool:p.join(',')+(PL.under?' +'+PL.under:'')+(birds?' 새'+birds:'')}}
+  return {fin,pk,rms:Math.sqrt(ss/DS),ev,pool:p.join(',')+(PL.under?' +'+PL.under:'')+(birds?' '+kinds.join('+')+birds:'')}}
 fs.mkdirSync(OUT,{recursive:true});
 for(const t of T){const r=render(t);fs.writeFileSync(path.join(OUT,t.id+'.f32'),Buffer.from(r.fin.buffer));
   console.log(t.id.padEnd(12),'peak',(20*Math.log10(r.pk)).toFixed(1),'dB rms',(20*Math.log10(r.rms)).toFixed(1),'dB events',r.ev,r.pool)}

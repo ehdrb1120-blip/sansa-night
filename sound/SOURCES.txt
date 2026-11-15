@@ -12,4 +12,7 @@ rain.mp3    지붕 위로 떨어지는 빗소리 / 한국저작권위원회 / CC
 wind.mp3    나뭇잎을 스치는 잔잔한 오후의 바람소리 / 한국저작권위원회 / CC BY / 13220711
 
 bell1~3.mp3 은 bell.mp3 원본에서 종 치는 순간만 잘라 낸 것, moktak1.mp3 은 moktak.mp3 원본에서 두드리는 부분만 잘라 낸 것입니다.
-owl1~owl5: 소쩍새(Otus sunia) 울음 — Sharadapte, Wikimedia Commons "Oriental scops owl song recorded in March 2009 at Cotigao Wildlife Sanctuary, Goa.wav", CC BY-SA 4.0. 한 번씩 우는 소리만 잘라 높낮이 거름(450~2600Hz)을 함.
+밤새 (공유마당 · 한국저작권위원회 CC BY): 솔부엉이 13253877(sol5), 수리부엉이 13253899(suri1), 부엉이1 13253614(bueong1~3), 올빼미 13254304(olpp1~2), 쏙독새 13254085(ssok1~3)
+밤새 (공유마당 · (재)전주정보문화산업진흥원 공공누리 제1유형): 소쩍새 산청 밤머리재 13371662(sojjeok1~6), 솔부엉이 인천 늘솔길공원 13371671(sol1~4)
+긴점박이올빼미(gin1~4): Alexander Kürthy, Wikimedia Commons "Strix uralensis - Ural Owl XC314581.mp3", CC BY-SA 4.0
+모두 우는 부분만 잘라 높낮이 거름과 크기 맞춤을 함.
